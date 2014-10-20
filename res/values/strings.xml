@@ -14,4 +14,10 @@
     <string name="record">Record</string>
 	<string name="stop">Stop</string>
 	<string name="notes">Notes</string>
+	<string name="patient1">123</string>
+	<string name="patient2">234</string>
+	<string name="patient3">345</string>
+	<string name="notes1">Allergic to augmentin</string>
+	<string name="notes2">Liquid diet only</string>
+	<string name="notes3">Waiting for prescription</string>
 </resources>
