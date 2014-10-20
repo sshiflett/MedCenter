@@ -9,6 +9,9 @@
     <string name="patientInfo">Patient Name/Number</string>
     <string name="search">Search</string>
     <string name="name">Patient Name</string>
-    <string name="id">ID</string>
-
+    <string name="id">Patient ID</string>
+    <string name="patient">Patient</string>
+    <string name="record">Record</string>
+	<string name="stop">Stop</string>
+	<string name="notes">Notes</string>
 </resources>
