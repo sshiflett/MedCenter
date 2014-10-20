@@ -31,9 +31,16 @@
 	<string name="cancel">Cancel</string>
 	<string name="fillList">Prescriptions to be Filled</string>
 	<string name="prescription">Prescription</string>
+	<string name="prescriptions">Prescriptions</string>
 	<string name="amount">Amount</string>
 	<string name="antib1">Penicillin</string>
 	<string name="antib2">Amoxycillin</string>
 	<string name="antib3">Morphine</string>
 	<string name="pillCount">30</string>
+	<string name="fill">Fill Rx</string>
+	<string name="testNotes">Jim Bob is set to be discharged as of 10/21 barring any further complications</string>
+	<string name="doctor">Dr. Samuel Shiflett</string>
+	<string name="rxNotes">Take before bed with water on a full stomach</string>
+	<string name="prescribe">Prescribe</string>
+	<string name="prescriptionWriter">Prescribing Doctor:</string>
 </resources>

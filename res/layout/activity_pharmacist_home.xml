@@ -13,12 +13,21 @@
         android:text="@string/fillList"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="68dp"
+        android:text="@string/prescription" />
+
     <TableLayout
         android:id="@+id/tableLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView1" >
+        android:layout_below="@+id/textView12"
+        android:layout_centerHorizontal="true" >
 
         <TableRow
             android:id="@+id/tableRow1"
@@ -32,7 +41,7 @@
                 android:text="@string/patient" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/textView4"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="@string/prescription" />
@@ -116,5 +125,24 @@
                 android:text="@string/pillCount" />
         </TableRow>
     </TableLayout>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_below="@+id/tableLayout2"
+        android:layout_marginTop="75dp"
+        android:text="@string/fill" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_alignRight="@+id/button1"
+        android:layout_below="@+id/button1"
+        android:text="@string/cancel" />
 
 </RelativeLayout>
