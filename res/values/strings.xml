@@ -43,4 +43,11 @@
 	<string name="rxNotes">Take before bed with water on a full stomach</string>
 	<string name="prescribe">Prescribe</string>
 	<string name="prescriptionWriter">Prescribing Doctor:</string>
+	<string name="patientName">Patient:</string>
+	<string name="prescriptionName">Prescription:</string>
+	<string name="pillNumber">Count:</string>
+	<string name="otherRx">Other Prescriptions:</string>
+	<string name="filled">Fill</string>
+	<string name="reject">Reject</string>
+	<string name="confirm">Confirm</string>
 </resources>
