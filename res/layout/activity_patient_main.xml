@@ -250,4 +250,13 @@
         android:text="@string/prescriptions"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tableLayout5"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/textView29"
+        android:text="@string/cancel" />
+
 </RelativeLayout>
