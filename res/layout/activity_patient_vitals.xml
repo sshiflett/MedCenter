@@ -162,5 +162,15 @@
                 android:text="@string/fakeBP" />
         </TableRow>
     </TableLayout>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_alignRight="@+id/button2"
+        android:layout_below="@+id/tableLayout1"
+        android:layout_marginTop="60dp"
+        android:text="@string/cancel" />
     
 </RelativeLayout>

@@ -23,8 +23,17 @@
 	<string name="rate">Heartrate</string>
 	<string name="oxygen">O2</string>
 	<string name="bloodp">Blood Pressure</string>
-	<string name="testPatient">JimBob</string>
+	<string name="testPatient">Jim Bob</string>
 	<string name="fakeRate"> 80 BPM</string>
 	<string name="fakeO2">92%</string>
 	<string name="fakeBP">110/80</string>
+	<string name="writeRx">Write Rx</string>
+	<string name="cancel">Cancel</string>
+	<string name="fillList">Prescriptions to be Filled</string>
+	<string name="prescription">Prescription</string>
+	<string name="amount">Amount</string>
+	<string name="antib1">Penicillin</string>
+	<string name="antib2">Amoxycillin</string>
+	<string name="antib3">Morphine</string>
+	<string name="pillCount">30</string>
 </resources>
