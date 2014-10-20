@@ -51,8 +51,7 @@
                 android:id="@+id/textView12"
                 android:layout_width="100dip"
                 android:layout_height="wrap_content"
-           
-                android:text="@string/bloodp" />
+                android:text="@string/username" />
         </TableRow>
 
         <TableRow
