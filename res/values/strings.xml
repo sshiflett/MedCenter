@@ -20,4 +20,8 @@
 	<string name="notes1">Allergic to augmentin</string>
 	<string name="notes2">Liquid diet only</string>
 	<string name="notes3">Waiting for prescription</string>
+	<string name="rate">Heartrate</string>
+	<string name="oxygen">O2</string>
+	<string name="bloodp">Blood Pressure</string>
+	<string name="testPatient">JimBob</string>
 </resources>
