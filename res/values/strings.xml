@@ -24,4 +24,7 @@
 	<string name="oxygen">O2</string>
 	<string name="bloodp">Blood Pressure</string>
 	<string name="testPatient">JimBob</string>
+	<string name="fakeRate"> 80 BPM</string>
+	<string name="fakeO2">92%</string>
+	<string name="fakeBP">110/80</string>
 </resources>
