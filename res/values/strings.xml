@@ -50,6 +50,8 @@
     <string name="filled">Fill</string>
     <string name="reject">Reject</string>
     <string name="confirm">Confirm</string>
+    <string name="logout">Logout</string>
+    <string name="addV">Add Vitals</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_fill_prescript">FillPrescript</string>
     <string name="title_activity_nurse__doctor">Nurse_Doctor</string>
