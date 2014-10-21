@@ -25,27 +25,26 @@ public class MainActivity extends Activity {
 	
 				@Override
 				public void onClick(View v) {
-				Intent shiftToHome = new Intent (v.getContext(), Nurse_Doctor.class);
+				Intent shiftToDoctorHome = new Intent (v.getContext(), Nurse_Doctor.class);
 				Intent shiftToPharm = new Intent (v.getContext(), PharmacistMainFinal.class);
+				Intent shiftToNurseHome = new Intent (v.getContext(), NurseHome.class);
+				Intent shiftToPatientHome = new Intent (v.getContext(), PatientMain.class);
 				
 				if(username.getText().toString().equals("doctor1") && password.getText().toString().equals("password")){
-				startActivityForResult(shiftToHome, 0);
+					startActivityForResult(shiftToDoctorHome, 0);
 				}	
 				else if(username.getText().toString().equals("pharm1") && password.getText().toString().equals("password")){
-				startActivityForResult(shiftToPharm, 0);
+					startActivityForResult(shiftToPharm, 0);
+				}
+				else if(username.getText().toString().equals("nurse1") && password.getText().toString().equals("password")){
+					startActivityForResult(shiftToNurseHome, 0);
+				}
+				else if (username.getText().toString().equals("patient1") && password.getText().toString().equals("password")){
+					startActivityForResult(shiftToPatientHome, 0);
 				}
 				}});
 			
-		Button next1 = (Button) findViewById(R.id.button2);
-		next1.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-			Intent shiftToPatient = new Intent (v.getContext(), PatientMain.class);
-			startActivityForResult(shiftToPatient, 0);
-				
-			}
-		});
+		
 			
 		}
 	 

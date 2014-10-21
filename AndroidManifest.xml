@@ -16,7 +16,6 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" >
-            
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,6 +49,22 @@
         <activity
             android:name=".PrescriptionSubmission"
             android:label="@string/title_activity_prescription_submission" >
+        </activity>
+        <activity
+            android:name=".DoctorHome"
+            android:label="@string/title_activity_doctor_home" >
+        </activity>
+        <activity
+            android:name=".NursePatientInfo"
+            android:label="@string/title_activity_nurse_patient_info" >
+        </activity>
+        <activity
+            android:name=".NurseHome"
+            android:label="@string/title_activity_nurse_home" >
+        </activity>
+        <activity
+            android:name=".NurseVitals"
+            android:label="@string/title_activity_nurse_vitals" >
         </activity>
     </application>
 

@@ -60,5 +60,9 @@
     <string name="title_activity_pharmacist_main_final">PharmacistMainFinal</string>
     <string name="title_activity_patient_vitals_final">PatientVitalsFinal</string>
     <string name="title_activity_prescription_submission">PrescriptionSubmission</string>
+    <string name="title_activity_doctor_home">DoctorHome</string>
+    <string name="title_activity_nurse_patient_info">NursePatientInfo</string>
+    <string name="title_activity_nurse_home">NurseHome</string>
+    <string name="title_activity_nurse_vitals">NurseVitals</string>
 
 </resources>
