@@ -134,6 +134,6 @@
         android:layout_alignLeft="@+id/button1"
         android:layout_alignRight="@+id/button1"
         android:layout_below="@+id/button1"
-        android:text="@string/cancel" />
+        android:text="@string/logout" />
 
 </RelativeLayout>
