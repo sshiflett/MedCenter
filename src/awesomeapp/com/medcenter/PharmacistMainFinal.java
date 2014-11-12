@@ -17,7 +17,7 @@ public class PharmacistMainFinal extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_pharmacist_main_final);
 		
-		Button next = (Button) findViewById(R.id.button1);
+		Button next = (Button) findViewById(R.id.b_ps_confirm);
 		next.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -28,7 +28,7 @@ public class PharmacistMainFinal extends Activity {
 			}
 		});
 		
-		Button next1 = (Button) findViewById(R.id.button2);
+		Button next1 = (Button) findViewById(R.id.b_ps_cancel);
 		next1.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

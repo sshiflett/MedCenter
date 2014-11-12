@@ -17,7 +17,7 @@ public class PatientVitalsFinal extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_patient_vitals_final);
 		
-		Button next = (Button) findViewById(R.id.button3);
+		Button next = (Button) findViewById(R.id.b_dh_logout);
 		next.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

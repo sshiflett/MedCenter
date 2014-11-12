@@ -17,10 +17,10 @@ public class MainActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 		
-		final EditText username=(EditText) findViewById(R.id.editText1);
-		final EditText password=(EditText) findViewById(R.id.editText2);
+		final EditText username=(EditText) findViewById(R.id.et_input1);
+		final EditText password=(EditText) findViewById(R.id.et_input2);
 	
-		Button next = (Button) findViewById(R.id.button1);
+		Button next = (Button) findViewById(R.id.b_ps_confirm);
 		next.setOnClickListener(new View.OnClickListener() {
 	
 				@Override

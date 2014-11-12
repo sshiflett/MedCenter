@@ -16,7 +16,7 @@ public class FillPrescript extends Activity {
 		
 		setContentView(R.layout.activity_fill_prescript);
 		
-		Button next = (Button) findViewById(R.id.button3);
+		Button next = (Button) findViewById(R.id.b_dh_logout);
 		next.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

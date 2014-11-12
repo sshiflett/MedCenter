@@ -17,7 +17,7 @@ public class DoctorHome extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_doctor_home);
 		
-		Button next = (Button) findViewById(R.id.button1);
+		Button next = (Button) findViewById(R.id.b_ps_confirm);
 		next.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -28,7 +28,7 @@ public class DoctorHome extends Activity {
 			
 		});
 		
-		Button next1 = (Button) findViewById(R.id.button3);
+		Button next1 = (Button) findViewById(R.id.b_dh_logout);
 		next1.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

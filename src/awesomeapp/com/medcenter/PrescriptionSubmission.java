@@ -17,7 +17,7 @@ public class PrescriptionSubmission extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_prescription_submission);
 		
-		Button next = (Button) findViewById(R.id.button2);
+		Button next = (Button) findViewById(R.id.b_ps_cancel);
 		next.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

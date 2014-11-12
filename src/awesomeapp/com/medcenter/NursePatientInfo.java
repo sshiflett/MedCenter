@@ -18,7 +18,7 @@ public class NursePatientInfo extends Activity {
 		setContentView(R.layout.activity_nurse_patient_info);
 		
 		
-		Button next1 = (Button) findViewById(R.id.button3);
+		Button next1 = (Button) findViewById(R.id.b_dh_logout);
 		next1.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -29,7 +29,7 @@ public class NursePatientInfo extends Activity {
 			
 		});
 		
-		Button next2 = (Button) findViewById(R.id.button2);
+		Button next2 = (Button) findViewById(R.id.b_ps_cancel);
 		next2.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

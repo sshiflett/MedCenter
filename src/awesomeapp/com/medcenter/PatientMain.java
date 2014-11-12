@@ -17,7 +17,7 @@ public class PatientMain extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_patient_main);
 		
-		Button next = (Button) findViewById(R.id.button1);
+		Button next = (Button) findViewById(R.id.b_ps_confirm);
 		next.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
