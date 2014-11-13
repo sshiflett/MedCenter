@@ -135,6 +135,23 @@ public class MainActivity extends Activity {
 		        	 		JSONObject userObject = new JSONObject(uLookup);
 		        	 		
 		              		role_id = userObject.getInt("role");
+		    				Intent shiftToDoctorHome = new Intent (v.getContext(), DoctorHome.class);
+		    				Intent shiftToPharm = new Intent (v.getContext(), PharmacistMainFinal.class);
+		    				Intent shiftToNurseHome = new Intent (v.getContext(), NurseHome.class);
+		    				Intent shiftToPatientHome = new Intent (v.getContext(), PatientMain.class);
+		    				
+		    				if(role_id == 1){
+		    					startActivityForResult(shiftToDoctorHome, 0);
+		    				}	
+		    				else if(role_id == 2){
+		    					startActivityForResult(shiftToNurseHome, 0);
+		    				}
+		    				else if(role_id == 3){
+		    					startActivityForResult(shiftToPharm, 0);
+		    				}
+		    				else if (role_id == 4){
+		    					startActivityForResult(shiftToPatientHome, 0);
+		    				}
 		        	 		}
 		        	 		catch(JSONException f){
 		        	 			//oops
@@ -148,24 +165,6 @@ public class MainActivity extends Activity {
 		             }
 					
 					
-					
-				Intent shiftToDoctorHome = new Intent (v.getContext(), DoctorHome.class);
-				Intent shiftToPharm = new Intent (v.getContext(), PharmacistMainFinal.class);
-				Intent shiftToNurseHome = new Intent (v.getContext(), NurseHome.class);
-				Intent shiftToPatientHome = new Intent (v.getContext(), PatientMain.class);
-				
-				if(role_id == 1){
-					startActivityForResult(shiftToDoctorHome, 0);
-				}	
-				else if(role_id == 2){
-					startActivityForResult(shiftToNurseHome, 0);
-				}
-				else if(role_id == 3){
-					startActivityForResult(shiftToPharm, 0);
-				}
-				else if (role_id == 4){
-					startActivityForResult(shiftToPatientHome, 0);
-				}
 				
 				}});
 			
