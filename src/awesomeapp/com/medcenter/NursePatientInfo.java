@@ -118,15 +118,20 @@ public class NursePatientInfo extends Activity {
 						String patientLastName = patientObject.getString("first_name");
 						String fullPatientName = patientFirstName + " " + patientLastName;
 						patientName.setText(fullPatientName);
-						
-						
-						
+						int patientHeartRate = patientObject.getInt("heart_rate");
+						heartRate.setText(patientHeartRate);
+						int patientBreathingRate = patientObject.getInt("breathing_rate");
+						breathingRate.setText(patientBreathingRate);
+						int patientRR = patientObject.getInt("respiration_rate");
+						rr.setText(patientRR);								
 				}
         }
         catch(JSONException e){
         	//oops
         }
 		
+        // Need to set up notes/prescriptions/vitals if we keep that. 
+        // Why can the nurse do all this extra stuff the doctor cant?
 		
 		
 		Button cancel = (Button) findViewById(R.id.b_ps_cancel);
