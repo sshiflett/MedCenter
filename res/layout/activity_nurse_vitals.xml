@@ -69,4 +69,40 @@
         android:text="Respiration Rate"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
+    <EditText
+        android:id="@+id/et_heartRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/tv3"
+        android:layout_below="@+id/tv3"
+        android:ems="10"
+        android:text="000"
+        android:inputType="number" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/et_respirationRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/et_heartRate"
+        android:layout_below="@+id/tv1"
+        android:ems="10"
+        android:text="000"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/et_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/et_respirationRate"
+        android:layout_below="@+id/tv2"
+        android:ems="10"
+        android:text="000"
+        android:inputType="number" />
+
 </RelativeLayout>
