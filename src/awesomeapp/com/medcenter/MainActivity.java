@@ -31,152 +31,139 @@ import org.json.JSONObject;
 
 public class MainActivity extends Activity {
 	
+	public String readJSONFeed(String URL) {
+
+		StringBuilder stringBuilder = new StringBuilder();
+
+		HttpClient client = new DefaultHttpClient();
+
+		HttpGet httpGet = new HttpGet(URL);
 		
-		public class JSONParser {
+		JSONObject jObj = null;
 
-		    InputStream is = null;
-		    JSONObject jObj = null;
-		    String json = "";
+		try {
 
-		    // constructor
-		    public JSONParser() {}
+			HttpResponse response = client.execute(httpGet);
 
-		    public JSONObject getJSONFromUrl(String url) {
+			HttpEntity entity = response.getEntity();
 
-		        // Making HTTP request
-		        try {
-		            // defaultHttpClient
-		            DefaultHttpClient httpClient = new DefaultHttpClient();
-		            HttpGet httpGet = new HttpGet(url);
+			InputStream content = entity.getContent();
 
-		            HttpResponse httpResponse = httpClient.execute(httpGet);
-		            HttpEntity httpEntity = httpResponse.getEntity();
-		            is = httpEntity.getContent();
+			BufferedReader reader = new BufferedReader(
 
-		        } catch (UnsupportedEncodingException e) {
-		            e.printStackTrace();
-		        } catch (ClientProtocolException e) {
-		            e.printStackTrace();
-		        } catch (IOException e) {
-		            e.printStackTrace();
-		        }
+			new InputStreamReader(content));
 
-		        try {
-		            BufferedReader reader = new BufferedReader(new InputStreamReader(
-		                    is, "iso-8859-1"), 8);
-		            StringBuilder sb = new StringBuilder();
-		            String line = null;
-		            while ((line = reader.readLine()) != null) {
-		                sb.append(line + "\n");
-		            }
-		            is.close();
-		            json = sb.toString();
-		        } catch (Exception e) {
-		            Log.e("Buffer Error", "Error converting result " + e.toString());
-		        }
+			String line;
 
-		        // try parse the string to a JSON object
-		        try {
-		            jObj = new JSONObject(json);
-		        } catch (JSONException e) {
-		            Log.e("JSON Parser", "Error parsing data " + e.toString());
-		        }
+			while ((line = reader.readLine()) != null) {
 
-		        // return JSON String
-		        return jObj;
+				stringBuilder.append(line);
 
-		    }
+			}
+
+		} catch (ClientProtocolException e) {
+
+			e.printStackTrace();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
 		}
-			
+		
+		
+		 return stringBuilder.toString();
+	}
+	
 
 
 
-			
-			@Override
-			protected void onCreate(Bundle savedInstanceState) {
-				super.onCreate(savedInstanceState);
-				requestWindowFeature(Window.FEATURE_NO_TITLE);
-				setContentView(R.layout.activity_main);
-
-				final JSONParser jParser = new JSONParser();
-				final EditText username = (EditText) findViewById(R.id.et_user_name);
-				final EditText password = (EditText) findViewById(R.id.et_input2);
-			
-				Button next = (Button) findViewById(R.id.b_ps_confirm);
-				next.setOnClickListener(new View.OnClickListener() {
-			
-						@Override
-						public void onClick(View v) {
-				        	// Get entered text from EditText boxes.
-				           	String userName = username.getText().toString();
-				        	String passWord = password.getText().toString();
-				        	int role_id = 0;
-				        	String userId = "";
-				        	
-				        	
-				            String httpRequest = "http://173.78.61.249:8080/api/authenticate/?username=" + userName + "&password=" + passWord;
-				            //String httpResponse = readJSONFeed(httpRequest);
-				            JSONObject loginObject = jParser.getJSONFromUrl(httpRequest);
-				            
-				        	
-				        	// Use "authenticate" function, use response.
-				             try{
-				     
-				             int status =  loginObject.getInt("status");  
-				        	
-				        	// If authenticate status returns "forbidden", show error message using toast.
-				        	 if(status == 202)
-				        	 {
-				        	 		userId = String.valueOf(loginObject.getInt("id"));
-				        	 		// Send a request for user info using id returned from authenticate
-				             		String userLookup = "http://173.78.61.249:8080/api/user/?user_id=".concat(userId);
-				             		JSONObject userObject = jParser.getJSONFromUrl(userLookup);
-				             		
-				             		try{
-				             			role_id = userObject.getInt("role");
-				        				Intent shiftToDoctorHome = new Intent (v.getContext(), DoctorHome.class);
-				        				Intent shiftToPharm = new Intent (v.getContext(), PharmacistMainFinal.class);
-				        				Intent shiftToNurseHome = new Intent (v.getContext(), NurseHome.class);
-				        				Intent shiftToPatientHome = new Intent (v.getContext(), PatientMain.class);
-				        				
-				        				if(role_id == 1){
-				        					startActivityForResult(shiftToDoctorHome, 0);
-				        				}	
-				        				else if(role_id == 2){
-				        					startActivityForResult(shiftToNurseHome, 0);
-				        				}
-				        				else if(role_id == 3){
-				        					startActivityForResult(shiftToPharm, 0);
-				        				}
-				        				else if (role_id == 4){
-				        					startActivityForResult(shiftToPatientHome, 0);
-				        				}
-				            
-				                    
-				        	 
-				             		else
-				        	 			{
-				             				Toast.makeText(MainActivity.this, 
-					                	    "Your login was incorrect. Please try again.", Toast.LENGTH_SHORT).show();
-				             			}
-				             		}
-				             		catch(JSONException f){
-				             			//oops
-				             		}
-				        		}
-				             }
-				             catch(JSONException e)
-				             {
-				            	 //oops
-				             }
-							
-						
-						}});
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.activity_main);
+		
+		final EditText username = (EditText) findViewById(R.id.et_user_name);
+		final EditText password = (EditText) findViewById(R.id.et_input2);
+	
+		Button next = (Button) findViewById(R.id.b_ps_confirm);
+		next.setOnClickListener(new View.OnClickListener() {
+	
+				@Override
+				public void onClick(View v) {
+		        	// Get entered text from EditText boxes.
+		           	String userName = username.getText().toString();
+		        	String passWord = password.getText().toString();
+		        	int role_id = 0;
+		        	int userId = 0;
+		        	
+		        	
+		            String httpRequest = "http://173.78.61.249:8080/api/authenticate/?username=" + userName + "&password=" + passWord;
+		            String httpResponse = readJSONFeed(httpRequest);
+		            
+		            
+		        	
+		        	// Use "authenticate" function, use response.
+		             try{
+		             JSONObject loginObject = new JSONObject(httpResponse);
+		             int status = loginObject.getInt("status");  
+		        	// If authenticate status returns "forbidden", show error message using toast.
+		        	 if(status == 403)
+		        	 {
+		                	Toast.makeText(MainActivity.this, 
+		                	    "Your login was incorrect. Please try again.", Toast.LENGTH_SHORT).show();
+		               }     
+		        	
+		        	 else if(status == 202)
+		        	 	{
+		        	 		JSONObject userObject = loginObject.getJSONObject("user");
+		        	 		userId = userObject.getInt("id");
+		        	 		// Send a request for user info using id returned from authenticate
+		             		String userLookup = "http://173.78.61.249:8080/api/user/?user_id="+ userId;
+		             		String userResponse = readJSONFeed(userLookup);
+		       
+		             		
+		             		try{
+		                  		JSONObject user = new JSONObject(userResponse);
+		                  		JSONObject userInfo = user.getJSONObject("user");
+		             			role_id = userInfo.getInt("role");
+		        				Intent shiftToDoctorHome = new Intent (v.getContext(), DoctorHome.class);
+		        				Intent shiftToPharm = new Intent (v.getContext(), PharmacistMainFinal.class);
+		        				Intent shiftToNurseHome = new Intent (v.getContext(), NurseHome.class);
+		        				Intent shiftToPatientHome = new Intent (v.getContext(), PatientMain.class);
+		        				
+		        				if(role_id == 1){
+		        					startActivityForResult(shiftToDoctorHome, 0);
+		        				}	
+		        				else if(role_id == 2){
+		        					startActivityForResult(shiftToNurseHome, 0);
+		        				}
+		        				else if(role_id == 3){
+		        					startActivityForResult(shiftToPharm, 0);
+		        				}
+		        				else if (role_id == 4){
+		        					startActivityForResult(shiftToPatientHome, 0);
+		        				}
+		             		}
+		             		catch(JSONException f){
+		             			//oops
+		             		}
+		        		}
+		             }
+		             catch(JSONException e)
+		             {
+		            	 //oops
+		             }
 					
 				
-					
-				}
-			 
+				}});
 			
+		
 			
 		}
+	 
+	
+	
+}
