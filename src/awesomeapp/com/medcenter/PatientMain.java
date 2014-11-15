@@ -17,15 +17,15 @@ public class PatientMain extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_patient_main);
 		
-		Button next = (Button) findViewById(R.id.b_ps_confirm);
+		/*Button next = (Button) findViewById(R.id.b_ps_confirm);
 		next.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 			Intent shiftToHome = new Intent (v.getContext(), MainActivity.class);
-			startActivityForResult(shiftToHome, 0);
+			startActivity(shiftToHome);
 		}
 			
-		});
+		});*/
 	}
 }
