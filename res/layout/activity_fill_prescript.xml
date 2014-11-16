@@ -20,7 +20,7 @@
         android:text="@string/selected_patient_name" />
 
     <TextView
-        android:id="@+id/patient_id1"
+        android:id="@+id/selected_patient_prescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/TextView02"
@@ -38,51 +38,12 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/TextView03"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/patient_id1"
-        android:layout_below="@+id/patient_id1"
-        android:layout_marginTop="16dp"
-        android:text="@string/pillNumber"
-        android:textSize="20sp" />
-
-    <TextView
         android:id="@+id/selected_patient_prescription_amt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/TextView03"
         android:layout_below="@+id/TextView03"
         android:text="@string/pillCount" />
-
-    <Button
-        android:id="@+id/b_ps_confirm"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/selected_patient_prescription_amt1"
-        android:layout_marginTop="38dp"
-        android:text="@string/fill" />
-
-    <Button
-        android:id="@+id/b_dh_logout"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/b_ps_cancel"
-        android:layout_alignBottom="@+id/b_ps_cancel"
-        android:layout_toRightOf="@+id/b_ps_cancel"
-        android:text="@string/cancel" />
-
-    <Button
-        android:id="@+id/b_ps_cancel"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/b_ps_confirm"
-        android:layout_alignBottom="@+id/b_ps_confirm"
-        android:layout_toRightOf="@+id/b_ps_confirm"
-        android:text="@string/reject" />
 
     <TextView
         android:id="@+id/TextView01"
@@ -94,13 +55,52 @@
         android:text="@string/patientName"
         android:textSize="20sp" />
 
+    <Button
+        android:id="@+id/b_reject"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/selected_patient_prescription"
+        android:layout_marginTop="96dp"
+        android:layout_toRightOf="@+id/b_ps_confirm"
+        android:text="@string/reject" />
+
+    <TextView
+        android:id="@+id/TextView03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:text="@string/pillNumber"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/b_ps_confirm"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/b_reject"
+        android:layout_alignBottom="@+id/b_reject"
+        android:layout_alignParentLeft="true"
+        android:text="@string/fill" />
+
+    <Button
+        android:id="@+id/b_cancel"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/b_reject"
+        android:layout_alignBottom="@+id/b_reject"
+        android:layout_centerHorizontal="true"
+        android:text="@string/cancel" />
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="20dp"
         android:text="@string/prescriptionWriter"
         android:textSize="20sp" />
 

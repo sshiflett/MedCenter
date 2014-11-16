@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class Nurse_Doctor extends Activity {
 
@@ -17,8 +18,20 @@ public class Nurse_Doctor extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_nurse__doctor);
 		
-		Button next = (Button) findViewById(R.id.b_ps_confirm);
-		next.setOnClickListener(new View.OnClickListener() {
+		
+		//Button Initialization
+		Button search = (Button) findViewById(R.id.b_ps_confirm);
+		Button logout = (Button) findViewById(R.id.b_dh_logout);
+		//TextView initialization (similar to doctor_home)
+		final TextView patient_id1 = (TextView) findViewById(R.id.patient_id1);
+		final TextView patient_id2 = (TextView) findViewById(R.id.patient_id2);
+		final TextView patient_id3 = (TextView) findViewById(R.id.patient_id3);
+		final TextView patient_name1 = (TextView) findViewById(R.id.patient_name1);
+		final TextView patient_name2 = (TextView) findViewById(R.id.patient_name2);
+		final TextView patient_name3 = (TextView) findViewById(R.id.patient_name3);
+		
+		//Search event handler
+		search.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -26,10 +39,10 @@ public class Nurse_Doctor extends Activity {
 			startActivityForResult(shiftToPatientInfo, 0);
 		}
 			
-		});
+		});//end search event handler
 		
-		Button next1 = (Button) findViewById(R.id.b_dh_logout);
-		next1.setOnClickListener(new View.OnClickListener() {
+		//log out event handler
+		logout.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -37,6 +50,6 @@ public class Nurse_Doctor extends Activity {
 			startActivityForResult(shiftToPatientInfo, 0);
 		}
 			
-		});
+		});//end logout event handler
 	}
 }

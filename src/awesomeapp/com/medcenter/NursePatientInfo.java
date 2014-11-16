@@ -88,11 +88,80 @@ public class NursePatientInfo extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_nurse_patient_info);
 		
+		// View Initialization
+		
+		//Button initialization
+		Button b_cancel = (Button) findViewById(R.id.b_ps_cancel);
+		Button b_view_note = (Button) findViewById(R.id.b_viewNote);
+		Button b_add_note = (Button) findViewById(R.id.b_add_note);
+		Button b_give_rx = (Button) findViewById(R.id.b_give_rx);
+		Button b_add_vitals = (Button) findViewById(R.id.b_add_vitals);
+		//Textviews
 		final TextView heartRate = (TextView) findViewById(R.id.selected_patient_heart_rate);
 		final TextView breathingRate = (TextView) findViewById(R.id.selected_patient_breathing_rate);
 		final TextView rr = (TextView) findViewById(R.id.selected_patient_rr);
 		final TextView patientName = (TextView) findViewById(R.id.tv_patientName);
 		
+		//Button Handlers
+		
+		//cancel button handler
+		b_cancel.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+			Intent shiftToNurseHome = new Intent (v.getContext(), NurseHome.class);
+			startActivityForResult(shiftToNurseHome, 0);
+			}
+			
+		});//end cancel button
+		
+		
+		//view note button handler
+		b_view_note.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+			//Intent shiftToNurseHome = new Intent (v.getContext(), NurseHome.class);
+			//startActivityForResult(shiftToNurseHome, 0);
+			}
+			
+		});
+		//end view note button
+		
+		//add note button
+		b_add_note.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+			//Intent shiftToNurseHome = new Intent (v.getContext(), NurseHome.class);
+			//startActivityForResult(shiftToNurseHome, 0);
+			}
+		});
+		//end add not ebutton
+		
+		//give rx button
+		b_give_rx.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+			//Intent shiftToNurseHome = new Intent (v.getContext(), NurseHome.class);
+			//startActivityForResult(shiftToNurseHome, 0);
+			}
+			
+		});
+		//end give rx button
+		
+		//add bitals button
+		b_add_vitals.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+			//Intent shiftToNurseHome = new Intent (v.getContext(), NurseHome.class);
+			//startActivityForResult(shiftToNurseHome, 0);
+			}
+			
+		});
+		//end add vitals button
 		//Need to unbundle the patient id, set it to following variable and use it for database lookup.
 		int ubPatientId = 0;
 		
@@ -134,15 +203,7 @@ public class NursePatientInfo extends Activity {
         // Why can the nurse do all this extra stuff the doctor cant?
 		
 		
-		Button cancel = (Button) findViewById(R.id.b_ps_cancel);
-		cancel.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-			Intent shiftToNurseHome = new Intent (v.getContext(), NurseHome.class);
-			startActivityForResult(shiftToNurseHome, 0);
-			}
-			
-		});
+
+
 	}
 }

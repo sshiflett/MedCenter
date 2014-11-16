@@ -14,6 +14,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,6 +26,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class DoctorHome extends Activity {
@@ -88,7 +90,16 @@ public class DoctorHome extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_doctor_home);
 		
+		//Edit text Search Bar initialization
 		final EditText patientFinder = (EditText) findViewById(R.id.et_input1);
+		//TextView initialization
+		final TextView patient_id1 = (TextView) findViewById(R.id.patient_id1);
+		final TextView patient_id2 = (TextView) findViewById(R.id.patient_id2);
+		final TextView patient_id3 = (TextView) findViewById(R.id.patient_id3);
+		final TextView patient_name1 = (TextView) findViewById(R.id.patient_name1);
+		final TextView patient_name2 = (TextView) findViewById(R.id.patient_name2);
+		final TextView patient_name3 = (TextView) findViewById(R.id.patient_name3);
+		//Search button 
 		Button searchPatient = (Button) findViewById(R.id.b_ps_confirm);
 		searchPatient.setOnClickListener(new View.OnClickListener() {
 			

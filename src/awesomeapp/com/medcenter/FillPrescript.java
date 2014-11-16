@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class FillPrescript extends Activity {
 
@@ -16,8 +17,40 @@ public class FillPrescript extends Activity {
 		
 		setContentView(R.layout.activity_fill_prescript);
 		
-		Button next = (Button) findViewById(R.id.b_dh_logout);
-		next.setOnClickListener(new View.OnClickListener() {
+		//INITIALIZE BUTTONS (to names as they appear in the screen)
+		Button reject = (Button) findViewById(R.id.b_reject);
+		Button cancel = (Button) findViewById(R.id.b_cancel);
+		Button fill_rx = (Button) findViewById(R.id.b_ps_confirm);
+		//TEXT VIEWS (To names that correspond to their labels)
+		TextView prescribing_doctor = (TextView) findViewById(R.id.patient_doctor);
+		TextView patient = (TextView) findViewById(R.id.selected_patient_name);
+		TextView prescription = (TextView) findViewById(R.id.selected_patient_prescription);
+		TextView amount = (TextView) findViewById(R.id.selected_patient_prescription_amt1);
+		
+		//Fill RX HANDLER
+		fill_rx.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+			Intent shiftToPrescript = new Intent (v.getContext(), PharmacistMainFinal.class);
+			startActivityForResult(shiftToPrescript, 0);
+				
+			}
+		});
+		
+		//REJECT HANDLER
+	    reject.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+			Intent shiftToPrescript = new Intent (v.getContext(), PharmacistMainFinal.class);
+			startActivityForResult(shiftToPrescript, 0);
+				
+			}
+		});
+		
+	    //CANCEL HANDLER
+		cancel.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
