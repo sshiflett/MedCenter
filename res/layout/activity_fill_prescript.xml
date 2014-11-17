@@ -4,75 +4,95 @@
     android:layout_height="match_parent" >
 
     <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/prescriptionWriter"
+        android:textSize="20sp" />
+
+    <TextView
         android:id="@+id/patient_doctor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
         android:text="@string/doctor" />
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/patient_doctor"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:text="@string/patientName"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/selected_patient_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/TextView01"
         android:layout_below="@+id/TextView01"
+        android:layout_centerHorizontal="true"
         android:text="@string/selected_patient_name" />
-
-    <TextView
-        android:id="@+id/selected_patient_prescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/TextView02"
-        android:layout_below="@+id/TextView02"
-        android:text="@string/selected_patient_prescription1" />
 
     <TextView
         android:id="@+id/TextView02"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/selected_patient_name"
         android:layout_below="@+id/selected_patient_name"
-        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:text="@string/prescriptionName"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/selected_patient_prescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TextView02"
+        android:layout_centerHorizontal="true"
+        android:text="@string/selected_patient_prescription1" />
+
+    <TextView
+        android:id="@+id/TextView03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/pillNumber"
         android:textSize="20sp" />
 
     <TextView
         android:id="@+id/selected_patient_prescription_amt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/TextView03"
         android:layout_below="@+id/TextView03"
+        android:layout_centerHorizontal="true"
         android:text="@string/pillCount" />
-
-    <TextView
-        android:id="@+id/TextView01"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/patient_doctor"
-        android:layout_marginTop="21dp"
-        android:text="@string/patientName"
-        android:textSize="20sp" />
 
     <Button
         android:id="@+id/b_reject"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/selected_patient_prescription"
-        android:layout_marginTop="96dp"
-        android:layout_toRightOf="@+id/b_ps_confirm"
+        android:layout_alignBaseline="@+id/b_cancel"
+        android:layout_alignBottom="@+id/b_cancel"
+        android:layout_centerHorizontal="true"
         android:text="@string/reject" />
 
-    <TextView
-        android:id="@+id/TextView03"
+    <Button
+        android:id="@+id/b_cancel"
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:text="@string/pillNumber"
-        android:textSize="20sp" />
+        android:layout_below="@+id/selected_patient_prescription_amt1"
+        android:layout_marginTop="54dp"
+        android:layout_toRightOf="@+id/TextView03"
+        android:text="@string/cancel" />
 
     <Button
         android:id="@+id/b_ps_confirm"
@@ -81,27 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/b_reject"
         android:layout_alignBottom="@+id/b_reject"
-        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/TextView03"
         android:text="@string/fill" />
-
-    <Button
-        android:id="@+id/b_cancel"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/b_reject"
-        android:layout_alignBottom="@+id/b_reject"
-        android:layout_centerHorizontal="true"
-        android:text="@string/cancel" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="20dp"
-        android:text="@string/prescriptionWriter"
-        android:textSize="20sp" />
 
 </RelativeLayout>

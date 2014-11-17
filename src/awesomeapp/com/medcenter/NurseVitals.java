@@ -93,9 +93,6 @@ public class NurseVitals extends Activity {
         			TextView tv2 = (EditText)findViewById(R.id.et_respirationRate);
         			tv2.setText("000");
         			
-        			TextView tv3  = 	(EditText)findViewById(R.id.et_temperature);
-        			tv3.setText("000");
-        			
         			if(_bt.IsConnected())
         			{
         				_bt.start();				 
@@ -173,12 +170,7 @@ public class NurseVitals extends Activity {
     		
     		break;
     		
-    		case SKIN_TEMPERATURE:
-    			String SkinTemperaturetext = msg.getData().getString("SkinTemperature");
-    			tv = (EditText)findViewById(R.id.et_temperature);
-    			if (tv != null)tv.setText(SkinTemperaturetext);
-
-    		break;
+    		
     	    		
     		
     		}

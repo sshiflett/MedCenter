@@ -94,7 +94,6 @@ public class NursePatientInfo extends Activity {
 		Button b_cancel = (Button) findViewById(R.id.b_ps_cancel);
 		Button b_view_note = (Button) findViewById(R.id.b_viewNote);
 		Button b_add_note = (Button) findViewById(R.id.b_add_note);
-		Button b_give_rx = (Button) findViewById(R.id.b_give_rx);
 		Button b_add_vitals = (Button) findViewById(R.id.b_add_vitals);
 		//Textviews
 		final TextView heartRate = (TextView) findViewById(R.id.selected_patient_heart_rate);
@@ -139,17 +138,6 @@ public class NursePatientInfo extends Activity {
 		});
 		//end add not ebutton
 		
-		//give rx button
-		b_give_rx.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-			//Intent shiftToNurseHome = new Intent (v.getContext(), NurseHome.class);
-			//startActivityForResult(shiftToNurseHome, 0);
-			}
-			
-		});
-		//end give rx button
 		
 		//add bitals button
 		b_add_vitals.setOnClickListener(new View.OnClickListener() {

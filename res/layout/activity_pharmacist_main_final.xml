@@ -33,93 +33,11 @@
         <requestFocus />
     </EditText>
 
-    <TableLayout
-        android:id="@+id/tableLayout1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/et_prescription"
-        android:layout_alignRight="@+id/b_ps_confirm"
-        android:layout_below="@+id/b_ps_confirm" >
-
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/patient_doctor"
-                android:layout_width="100dip"
-                android:layout_height="wrap_content"
-                android:text="@string/id" />
-
-            <TextView
-                android:id="@+id/selected_patient_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/patientName" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/patient_id1"
-                android:layout_width="100dip"
-                android:layout_height="wrap_content"
-                android:text="@string/patientID1" />
-
-            <TextView
-                android:id="@+id/patient_name1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/patient_name1" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/patient_id2"
-                android:layout_width="100dip"
-                android:layout_height="wrap_content"
-                android:text="@string/patientID2" />
-
-            <TextView
-                android:id="@+id/patient_name2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/patient_name2" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/patient_id3"
-                android:layout_width="100dip"
-                android:layout_height="wrap_content"
-                android:text="@string/patientID3" />
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/patient_name3" />
-        </TableRow>
-    </TableLayout>
-
-
     <Button
         android:id="@+id/b_dh_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tableLayout1"
+        android:layout_alignLeft="@+id/et_prescription"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/b_ps_confirm"
         android:layout_marginBottom="50dp"

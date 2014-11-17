@@ -1,159 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_alignParentLeft="true"
-    android:layout_alignParentTop="true"
-
-  >
+    android:layout_alignParentTop="true" >
 
     <TextView
-        android:id="@+id/tv2"
+        android:id="@+id/tv_patientName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_patientName"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="29dp"
-        android:text="Breathing Rate"
+        android:layout_marginTop="26dp"
+        android:text="@string/selected_patient_name"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/selected_patient_breathing_rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv2"
+        android:layout_centerHorizontal="true"
+        android:text="@string/selected_patient_breathing_rate"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
         android:id="@+id/tv3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/tv2"
-        android:layout_alignLeft="@+id/tv_patientName"
+        android:layout_below="@+id/tv_patientName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
         android:text="Heart Rate"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
-        android:id="@+id/tv1"
+        android:id="@+id/tv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tv2"
-        android:layout_alignBottom="@+id/tv2"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="22dp"
-        android:text="RR"
+        android:layout_below="@+id/selected_patient_heart_rate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="Respiration Rate"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
-        android:id="@+id/tv_patientViewNote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tv3"
-        android:layout_below="@+id/tv3"
-        android:layout_marginTop="30dp"
-        android:text="@string/notes"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <Spinner
-        android:id="@+id/s_pv_notes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/tv_patientViewNote" />
-
-    <Button
-        android:id="@+id/b_add_note"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/s_pv_notes"
-        android:layout_marginRight="18dp"
-        android:layout_toLeftOf="@+id/tv1"
-        android:text="@string/add_note" />
-
-    <Button
-        android:id="@+id/b_ps_cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/tv_patientName"
-        android:text="@string/cancel" />
-
-    <Button
-        android:id="@+id/b_give_rx"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/b_ps_cancel"
-        android:layout_alignLeft="@+id/s_pv_prescriptions"
-        android:layout_marginBottom="16dp"
-        android:text="@string/give_rx" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/s_pv_prescriptions"
-        android:layout_alignParentLeft="true"
-        android:text="@string/prescriptions"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/selected_patient_heart_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tv3"
         android:layout_below="@+id/tv3"
+        android:layout_centerHorizontal="true"
         android:text="@string/selected_patient_heart_rate"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
-        android:id="@+id/selected_patient_breathing_rate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/selected_patient_heart_rate"
-        android:layout_alignBottom="@+id/selected_patient_heart_rate"
-        android:layout_alignLeft="@+id/tv2"
-        android:text="@string/selected_patient_breathing_rate"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
-        android:id="@+id/selected_patient_rr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/selected_patient_breathing_rate"
-        android:layout_alignBottom="@+id/selected_patient_breathing_rate"
-        android:layout_toRightOf="@+id/b_add_note"
-        android:text="@string/selected_patient_rr"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <Button
         android:id="@+id/b_viewNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/s_pv_notes"
+        android:layout_alignLeft="@+id/tv2"
+        android:layout_alignRight="@+id/tv2"
+        android:layout_below="@+id/selected_patient_breathing_rate"
+        android:layout_marginTop="55dp"
         android:text="@string/view_note" />
-
-    <TextView
-        android:id="@+id/tv_patientName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/selected_patient_name"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Button
         android:id="@+id/b_add_vitals"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/b_give_rx"
-        android:layout_alignBottom="@+id/b_give_rx"
-        android:layout_alignRight="@+id/b_ps_cancel"
+        android:layout_alignLeft="@+id/tv2"
+        android:layout_below="@+id/b_add_note"
         android:text="Add Vitals" />
 
-    <Spinner
-        android:id="@+id/s_pv_prescriptions"
+    <Button
+        android:id="@+id/b_add_note"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/b_give_rx"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignLeft="@+id/b_viewNote"
+        android:layout_alignRight="@+id/b_viewNote"
+        android:layout_below="@+id/b_viewNote"
+        android:text="@string/add_note" />
+
+    <Button
+        android:id="@+id/b_ps_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/b_add_vitals"
+        android:layout_alignRight="@+id/b_add_note"
+        android:layout_below="@+id/b_add_vitals"
+        android:text="@string/cancel" />
 
 </RelativeLayout>
-

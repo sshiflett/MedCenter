@@ -4,22 +4,37 @@
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" >
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="56dp"
+        android:text="@string/username"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
     <EditText
         android:id="@+id/et_input2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/patient_doctor"
-        android:layout_below="@+id/patient_doctor"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginLeft="44dp"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:inputType="textPassword" >
+
+        <requestFocus />
+    </EditText>
 
     <TextView
         android:id="@+id/patient_doctor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/et_user_name"
-        android:layout_marginTop="30dp"
+        android:layout_below="@+id/et_input2"
+        android:layout_marginLeft="44dp"
         android:text="@string/password"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -28,29 +43,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
+        android:layout_alignRight="@+id/et_input2"
+        android:layout_below="@+id/patient_doctor"
+        android:layout_marginLeft="44dp"
         android:ems="10"
-        android:inputType="text" >
-
-        <requestFocus />
-    </EditText>
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/username"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:inputType="text" />
 
     <Button
         android:id="@+id/b_ps_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/et_input2"
-        android:layout_marginTop="16dp"
+        android:layout_alignLeft="@+id/et_user_name"
+        android:layout_alignRight="@+id/et_user_name"
+        android:layout_below="@+id/et_user_name"
+        android:layout_marginTop="58dp"
         android:text="@string/loginButton" />
 
 </RelativeLayout>

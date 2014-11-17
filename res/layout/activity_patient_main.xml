@@ -21,36 +21,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_patientName"
-        android:layout_marginTop="24dp"
-        android:layout_toLeftOf="@+id/b_pv_viewNote"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
         android:text="Temperature"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
-        android:id="@+id/tv3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/selected_patient_breathing_rate"
-        android:layout_below="@+id/tv2"
-        android:layout_marginTop="39dp"
-        android:text="Heart Rate"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
-        android:id="@+id/selected_patient_heart_rate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tv3"
-        android:layout_below="@+id/tv3"
-        android:text="@string/selected_patient_heart_rate"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
         android:id="@+id/selected_patient_breathing_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tv2"
         android:layout_below="@+id/tv2"
+        android:layout_centerHorizontal="true"
         android:text="@string/selected_patient_breathing_rate"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -58,9 +39,9 @@
         android:id="@+id/tv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/selected_patient_heart_rate"
-        android:layout_below="@+id/selected_patient_heart_rate"
-        android:layout_marginTop="29dp"
+        android:layout_below="@+id/selected_patient_breathing_rate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
         android:text="Respiration Rate"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -68,7 +49,8 @@
         android:id="@+id/selected_patient_rr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tv1"
+        android:layout_centerHorizontal="true"
+        android:layout_alignLeft="@+id/selected_patient_breathing_rate"
         android:layout_below="@+id/tv1"
         android:text="@string/selected_patient_rr"
         android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -77,9 +59,10 @@
         android:id="@+id/b_pv_viewNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/selected_patient_rr"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="63dp"
+        android:layout_alignLeft="@+id/tv1"
+        android:layout_below="@+id/selected_patient_rr"
+        android:layout_marginTop="108dp"
         android:text="@string/view_note" />
 
     <Button
@@ -87,7 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/b_pv_viewNote"
-        android:layout_alignRight="@+id/b_pv_viewNote"
+        android:layout_alignRight="@+id/tv1"
         android:layout_below="@+id/b_pv_viewNote"
         android:text="@string/logout" />
 
