@@ -33,151 +33,175 @@ public class NurseVitals extends Activity {
 	private final int HEART_RATE = 0x100;
 	private final int RESPIRATION_RATE = 0x102;
 	private final int SKIN_TEMPERATURE = 0x103;
-	final int heartR=0;
-	final int respRate=0;
-	final int temp=0;
+	int heartR=0;
+	int respRate=0;
 	
 	
 	
 	
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nurse_vitals);
-        /*Sending a message to android that we are going to initiate a pairing request*/
-        IntentFilter filter = new IntentFilter("android.bluetooth.device.action.PAIRING_REQUEST");
-        /*Registering a new BTBroadcast receiver from the Main Activity context with pairing request event*/
-       this.getApplicationContext().registerReceiver(new BTBroadcastReceiver(), filter);
-        // Registering the BTBondReceiver in the application that the status of the receiver has changed to Paired
-        IntentFilter filter2 = new IntentFilter("android.bluetooth.device.action.BOND_STATE_CHANGED");
-       this.getApplicationContext().registerReceiver(new BTBondReceiver(), filter2);
-        
-    
-        Button btnConnect = (Button) findViewById(R.id.b_ps_confirm);
-        if (btnConnect != null)
-        {
-        	btnConnect.setOnClickListener(new OnClickListener() {
-        		public void onClick(View v) {
-        			String BhMacID = "00:07:80:9D:8A:E8";
-        			//String BhMacID = "00:07:80:88:F6:BF";
-        			adapter = BluetoothAdapter.getDefaultAdapter();
-        			
-        			Set<BluetoothDevice> pairedDevices = adapter.getBondedDevices();
-        			
-        			if (pairedDevices.size() > 0) 
-        			{
-                        for (BluetoothDevice device : pairedDevices) 
-                        {
-                        	if (device.getName().startsWith("BH")) 
-                        	{
-                        		BluetoothDevice btDevice = device;
-                        		BhMacID = btDevice.getAddress();
-                                break;
+	
+	
+	  @Override
+	    public void onCreate(Bundle savedInstanceState) {
+	        super.onCreate(savedInstanceState);
+	        setContentView(R.layout.activity_nurse_vitals);
+	        /*Sending a message to android that we are going to initiate a pairing request*/
+	        IntentFilter filter = new IntentFilter("android.bluetooth.device.action.PAIRING_REQUEST");
+	        /*Registering a new BTBroadcast receiver from the Main Activity context with pairing request event*/
+	       this.getApplicationContext().registerReceiver(new BTBroadcastReceiver(), filter);
+	        // Registering the BTBondReceiver in the application that the status of the receiver has changed to Paired
+	        IntentFilter filter2 = new IntentFilter("android.bluetooth.device.action.BOND_STATE_CHANGED");
+	       this.getApplicationContext().registerReceiver(new BTBondReceiver(), filter2);
+	        
+	    
+	        Button btnConnect = (Button) findViewById(R.id.b_ps_confirm);
+	        if (btnConnect != null)
+	        {
+	        	btnConnect.setOnClickListener(new OnClickListener() {
+	        		public void onClick(View v) {
+	        			String BhMacID = "00:07:80:9D:8A:E8";
+	        			//String BhMacID = "00:07:80:88:F6:BF";
+	        			adapter = BluetoothAdapter.getDefaultAdapter();
+	        			
+	        			Set<BluetoothDevice> pairedDevices = adapter.getBondedDevices();
+	        			
+	        			if (pairedDevices.size() > 0) 
+	        			{
+	                        for (BluetoothDevice device : pairedDevices) 
+	                        {
+	                        	if (device.getName().startsWith("BH")) 
+	                        	{
+	                        		BluetoothDevice btDevice = device;
+	                        		BhMacID = btDevice.getAddress();
+	                                break;
 
-                        	}
-                        }
-                        
-                        
-        			}
-        			
-        			//BhMacID = btDevice.getAddress();
-        			BluetoothDevice Device = adapter.getRemoteDevice(BhMacID);
-        			String DeviceName = Device.getName();
-        			_bt = new BTClient(adapter, BhMacID);
-        			_NConnListener = new NewConnectedListener(Newhandler,Newhandler);
-        			_bt.addConnectedEventListener(_NConnListener);
-        			
-        			TextView tv1 = (EditText)findViewById(R.id.et_heartRate);
-        			tv1.setText("000");
-        			
-        			TextView tv2 = (EditText)findViewById(R.id.et_respirationRate);
-        			tv2.setText("000");
-        			
-        			if(_bt.IsConnected())
-        			{
-        				_bt.start();				 
-						 //Reset all the values to 0s
-        			}
-  
-        			
-        		}
-        	});
-        }
-        
-       
-        
-    }
-    
-    private class BTBondReceiver extends BroadcastReceiver {
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			Bundle b = intent.getExtras();
-			BluetoothDevice device = adapter.getRemoteDevice(b.get("android.bluetooth.device.extra.DEVICE").toString());
-			Log.d("Bond state", "BOND_STATED = " + device.getBondState());
-		}
-    }
-    private class BTBroadcastReceiver extends BroadcastReceiver {
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			Log.d("BTIntent", intent.getAction());
-			Bundle b = intent.getExtras();
-			Log.d("BTIntent", b.get("android.bluetooth.device.extra.DEVICE").toString());
-			Log.d("BTIntent", b.get("android.bluetooth.device.extra.PAIRING_VARIANT").toString());
-			try {
+	                        	}
+	                        }
+	                        
+	                        
+	        			}
+	        			
+	        			//BhMacID = btDevice.getAddress();
+	        			BluetoothDevice Device = adapter.getRemoteDevice(BhMacID);
+	        			String DeviceName = Device.getName();
+	        			_bt = new BTClient(adapter, BhMacID);
+	        			_NConnListener = new NewConnectedListener(Newhandler,Newhandler);
+	        			_bt.addConnectedEventListener(_NConnListener);
+	        			
+	        			TextView tv1 = (EditText)findViewById(R.id.et_heartRate);
+	        			tv1.setText("000");
+	        			
+	        			TextView tv2 = (EditText)findViewById(R.id.et_respirationRate);
+	        			tv2.setText("000");
+	        			
+	        			
+	        			if(_bt.IsConnected())
+	        			{
+	        				_bt.start();				 
+							 //Reset all the values to 0s
+	        			}
+	        			else
+	        				Toast.makeText(getApplicationContext(), "Unable to Connect to Sensor", Toast.LENGTH_SHORT).show();
+	  
+	        			
+	        		}
+	        	});
+	        }
+	        
+	        Button stopRecord = (Button) findViewById(R.id.b_ps_cancel);
+	        if (stopRecord != null)
+	        {
+	        	stopRecord.setOnClickListener(new OnClickListener() 
+	        	{
+	        		public void onClick(View v) {
+	        			
+	        			TextView heartRateTV = (EditText)findViewById(R.id.et_heartRate);
+	        			String heartRate = heartRateTV.getText().toString();
+	        			final int heartRateInt = Integer.parseInt(heartRate);
+	        			
+	        			TextView respirationRateTV = (EditText)findViewById(R.id.et_respirationRate);
+	        			String respirationRate = heartRateTV.getText().toString();
+	        			final int respirationRateInt = Integer.parseInt(respirationRate);
+	        			
+
+	        		}
+	        	});
+	        }
+	        
+	       
+	        
+	    }
+	    
+	    private class BTBondReceiver extends BroadcastReceiver {
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				Bundle b = intent.getExtras();
 				BluetoothDevice device = adapter.getRemoteDevice(b.get("android.bluetooth.device.extra.DEVICE").toString());
-				Method m = BluetoothDevice.class.getMethod("convertPinToBytes", new Class[] {String.class} );
-				byte[] pin = (byte[])m.invoke(device, "1234");
-				m = device.getClass().getMethod("setPin", new Class [] {pin.getClass()});
-				Object result = m.invoke(device, pin);
-				Log.d("BTTest", result.toString());
-			} catch (SecurityException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (NoSuchMethodException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Log.d("Bond state", "BOND_STATED = " + device.getBondState());
 			}
-		}
-    }
-    
+	    }
+	    private class BTBroadcastReceiver extends BroadcastReceiver {
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				Log.d("BTIntent", intent.getAction());
+				Bundle b = intent.getExtras();
+				Log.d("BTIntent", b.get("android.bluetooth.device.extra.DEVICE").toString());
+				Log.d("BTIntent", b.get("android.bluetooth.device.extra.PAIRING_VARIANT").toString());
+				try {
+					BluetoothDevice device = adapter.getRemoteDevice(b.get("android.bluetooth.device.extra.DEVICE").toString());
+					Method m = BluetoothDevice.class.getMethod("convertPinToBytes", new Class[] {String.class} );
+					byte[] pin = (byte[])m.invoke(device, "1234");
+					m = device.getClass().getMethod("setPin", new Class [] {pin.getClass()});
+					Object result = m.invoke(device, pin);
+					Log.d("BTTest", result.toString());
+				} catch (SecurityException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NoSuchMethodException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+	    }
+	    
 
-    final  Handler Newhandler = new Handler(){
-    	public void handleMessage(Message msg)
-    	{
-    		TextView tv;
-    		switch (msg.what)
-    		{
-    		case HEART_RATE:
-    			String HeartRatetext = msg.getData().getString("HeartRate");
-    			tv = (EditText)findViewById(R.id.et_heartRate);
-    			System.out.println("Heart Rate Info is "+ HeartRatetext);
-    			if (tv != null)tv.setText(HeartRatetext);
-    		break;
-    		
-    		case RESPIRATION_RATE:
-    			String RespirationRatetext = msg.getData().getString("RespirationRate");
-    			tv = (EditText)findViewById(R.id.et_respirationRate);
-    			if (tv != null)tv.setText(RespirationRatetext);
-    		
-    		break;
-    		
-    		
-    	    		
-    		
-    		}
-    	}
+	    final  Handler Newhandler = new Handler(){
+	    	public void handleMessage(Message msg)
+	    	{
+	    		TextView tv;
+	    		switch (msg.what)
+	    		{
+	    		case HEART_RATE:
+	    			String HeartRatetext = msg.getData().getString("HeartRate");
+	    			tv = (EditText)findViewById(R.id.et_heartRate);
+	    			System.out.println("Heart Rate Info is "+ HeartRatetext);
+	    			if (tv != null)tv.setText(HeartRatetext);
+	    		break;
+	    		
+	    		case RESPIRATION_RATE:
+	    			String RespirationRatetext = msg.getData().getString("RespirationRate");
+	    			tv = (EditText)findViewById(R.id.et_respirationRate);
+	    			if (tv != null)tv.setText(RespirationRatetext);
+	    		
+	    		break;
+	    		
+	
+	    	    		
+	    		
+	    		}
+	    	}
 
-    };
-    
-}
+	    };
+	    
+	}
 
 
