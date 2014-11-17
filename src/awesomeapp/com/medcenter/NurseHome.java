@@ -91,11 +91,6 @@ public class NurseHome extends Activity {
 		//Patient finder search box edit text w/e
 		final EditText nPatientFinder = (EditText) findViewById(R.id.et_prescription);
 		//Text views for the table info
-		final TextView patient_id1 = (TextView) findViewById(R.id.patient_id1);
-		final TextView patient_id2 = (TextView) findViewById(R.id.patient_id2);
-		final TextView patient_id3 = (TextView) findViewById(R.id.patient_id3);
-		final TextView patient_name1 = (TextView) findViewById(R.id.patient_name1);
-		final TextView patient_name2 = (TextView) findViewById(R.id.patient_name2);
 		final TextView patient_name3 = (TextView) findViewById(R.id.patient_name3);
 		
 		//Button declarations

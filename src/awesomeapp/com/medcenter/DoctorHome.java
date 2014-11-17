@@ -93,11 +93,6 @@ public class DoctorHome extends Activity {
 		//Edit text Search Bar initialization
 		final EditText patientFinder = (EditText) findViewById(R.id.et_input1);
 		//TextView initialization
-		final TextView patient_id1 = (TextView) findViewById(R.id.patient_id1);
-		final TextView patient_id2 = (TextView) findViewById(R.id.patient_id2);
-		final TextView patient_id3 = (TextView) findViewById(R.id.patient_id3);
-		final TextView patient_name1 = (TextView) findViewById(R.id.patient_name1);
-		final TextView patient_name2 = (TextView) findViewById(R.id.patient_name2);
 		final TextView patient_name3 = (TextView) findViewById(R.id.patient_name3);
 		//Search button 
 		Button searchPatient = (Button) findViewById(R.id.b_ps_confirm);
