@@ -3,29 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    tools:context="${relativePackage}.${activityClass}"
-    android:screenOrientation="portrait" >
-
-    <EditText
-        android:id="@+id/et_user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:background="#ffffff"
-        android:ems="10"
-        android:inputType="text" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/et_user_name"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="60dp"
-        android:text="@string/username"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#00B8E6" />
+    tools:context="${relativePackage}.${activityClass}" >
 
     <EditText
         android:id="@+id/et_input2"
@@ -39,25 +17,57 @@
         android:inputType="textPassword" />
 
     <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/et_user_name"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="91dp"
+        android:text="@string/username"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#00A300" />
+
+    <EditText
+        android:id="@+id/et_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:background="#ffffff"
+        android:ems="10"
+        android:inputType="text" />
+
+    <TextView
         android:id="@+id/patient_doctor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/et_input2"
+        android:layout_alignLeft="@+id/et_user_name"
         android:layout_below="@+id/et_user_name"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="24dp"
         android:text="@string/password"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#00B8E6" />
+        android:textColor="#00A300" />
 
     <Button
         android:id="@+id/b_ps_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/et_input2"
-        android:layout_alignRight="@+id/et_input2"
+        android:layout_alignRight="@+id/et_user_name"
         android:layout_below="@+id/et_input2"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/corner"
         android:text="@string/loginButton" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="MedCenter"
+        android:textColor="#ffffff"
+        android:textSize="40dp" />
 
 </RelativeLayout>

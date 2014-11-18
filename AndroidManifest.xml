@@ -20,7 +20,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,11 +30,13 @@
         </activity>
         <activity
             android:name=".FillPrescript"
-            android:label="@string/title_activity_fill_prescript" >
+            android:label="@string/title_activity_fill_prescript" 
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Nurse_Doctor"
-            android:label="@string/title_activity_nurse__doctor" >
+            android:label="@string/title_activity_nurse__doctor"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".PatientMain"
