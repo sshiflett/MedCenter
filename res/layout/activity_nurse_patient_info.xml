@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_alignParentLeft="true"
-    android:layout_alignParentTop="true" >
+    android:layout_alignParentTop="true"
+    android:background ="#000000" >
 
     <TextView
         android:id="@+id/tv_patientName"
@@ -14,7 +15,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="26dp"
         android:text="@string/selected_patient_name"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium" 
+        android:textColor="#ffffff"/>
 
     <TextView
         android:id="@+id/selected_patient_breathing_rate"
@@ -23,6 +25,7 @@
         android:layout_below="@+id/tv2"
         android:layout_centerHorizontal="true"
         android:text="@string/selected_patient_breathing_rate"
+        android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -33,6 +36,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:text="Heart Rate"
+        android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -43,6 +47,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:text="Respiration Rate"
+        android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -52,6 +57,7 @@
         android:layout_below="@+id/tv3"
         android:layout_centerHorizontal="true"
         android:text="@string/selected_patient_heart_rate"
+        android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <Button
@@ -60,17 +66,9 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/tv2"
         android:layout_alignRight="@+id/tv2"
-        android:layout_below="@+id/selected_patient_breathing_rate"
-        android:layout_marginTop="55dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/corner"
         android:text="@string/view_note" />
-
-    <Button
-        android:id="@+id/b_add_vitals"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tv2"
-        android:layout_below="@+id/b_add_note"
-        android:text="Add Vitals" />
 
     <Button
         android:id="@+id/b_add_note"
@@ -79,15 +77,30 @@
         android:layout_alignLeft="@+id/b_viewNote"
         android:layout_alignRight="@+id/b_viewNote"
         android:layout_below="@+id/b_viewNote"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/corner"
         android:text="@string/add_note" />
+
+    <Button
+        android:id="@+id/b_add_vitals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/b_viewNote"
+        android:layout_alignRight="@+id/b_add_note"
+        android:layout_below="@+id/b_add_note"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/corner"
+        android:text="Add Vitals" />
 
     <Button
         android:id="@+id/b_ps_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/b_add_vitals"
-        android:layout_alignRight="@+id/b_add_note"
+        android:layout_alignRight="@+id/b_add_vitals"
         android:layout_below="@+id/b_add_vitals"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/corner"
         android:text="@string/cancel" />
 
 </RelativeLayout>

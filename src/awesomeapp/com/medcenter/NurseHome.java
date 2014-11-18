@@ -89,7 +89,7 @@ public class NurseHome extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_nurse_home);
 		//Patient finder search box edit text w/e
-		final EditText nPatientFinder = (EditText) findViewById(R.id.et_prescription);
+		final EditText nPatientFinder = (EditText) findViewById(R.id.et_input1);
 		//Text views for the table info
 		final TextView patient_name3 = (TextView) findViewById(R.id.patient_name3);
 		

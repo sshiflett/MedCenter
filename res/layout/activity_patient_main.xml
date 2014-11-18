@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_alignParentLeft="true"
-    android:layout_alignParentTop="true" >
+    android:layout_alignParentTop="true" 
+    android:background="#000000">
 
     <TextView
         android:id="@+id/tv_patientName"
@@ -14,7 +15,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:text="@string/selected_patient_name"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#ffffff" />
 
     <TextView
         android:id="@+id/tv2"
@@ -24,7 +26,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
         android:text="Temperature"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#ffffff" />
 
     <TextView
         android:id="@+id/selected_patient_breathing_rate"
@@ -33,6 +36,7 @@
         android:layout_below="@+id/tv2"
         android:layout_centerHorizontal="true"
         android:text="@string/selected_patient_breathing_rate"
+        android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -43,6 +47,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:text="Respiration Rate"
+        android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -53,16 +58,18 @@
         android:layout_alignLeft="@+id/selected_patient_breathing_rate"
         android:layout_below="@+id/tv1"
         android:text="@string/selected_patient_rr"
+        android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <Button
         android:id="@+id/b_pv_viewNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_alignLeft="@+id/tv1"
+        android:layout_alignRight="@+id/tv1"
         android:layout_below="@+id/selected_patient_rr"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="83dp"
+        android:background="@drawable/corner"
         android:text="@string/view_note" />
 
     <Button
@@ -70,8 +77,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/b_pv_viewNote"
-        android:layout_alignRight="@+id/tv1"
+        android:layout_alignRight="@+id/b_pv_viewNote"
         android:layout_below="@+id/b_pv_viewNote"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/corner"
         android:text="@string/logout" />
 
 </RelativeLayout>

@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-	    <Button
-	        android:id="@+id/b_ps_cancel"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignLeft="@+id/b_ps_confirm"
-	        android:layout_alignRight="@+id/b_ps_confirm"
-	        android:layout_below="@+id/b_ps_confirm"
-	        android:text="@string/cancel" />
+    android:layout_height="match_parent"
+    android:background="#000000" >
 
 	    <TextView
 	        android:id="@+id/TextView01"
@@ -20,7 +12,8 @@
 	        android:layout_centerHorizontal="true"
 	        android:layout_marginTop="24dp"
 	        android:text="@string/patientName"
-	        android:textSize="20sp" />
+	        android:textSize="20sp"
+	        android:textColor="#ffffff" />
 
 	    <TextView
 	        android:id="@+id/textView1"
@@ -30,7 +23,8 @@
 	        android:layout_centerHorizontal="true"
 	        android:layout_marginTop="17dp"
 	        android:text="@string/prescriptionWriter"
-	        android:textSize="20sp" />
+	        android:textSize="20sp"
+	        android:textColor="#ffffff" />
 
 	    <TextView
 	        android:id="@+id/tv_doctor_name"
@@ -38,7 +32,8 @@
 	        android:layout_height="wrap_content"
 	        android:layout_below="@+id/textView1"
 	        android:layout_centerHorizontal="true"
-	        android:text="@string/doctor" />
+	        android:text="@string/doctor"
+	        android:textColor="#ffffff" />
 
 	    <TextView
 	        android:id="@+id/TextView02"
@@ -48,7 +43,8 @@
 	        android:layout_centerHorizontal="true"
 	        android:layout_marginTop="16dp"
 	        android:text="@string/prescriptionName"
-	        android:textSize="20sp" />
+	        android:textSize="20sp" 
+	        android:textColor="#ffffff"/>
 
 	    <EditText
 	        android:id="@+id/et_ps_prescription"
@@ -59,7 +55,9 @@
 	        android:layout_below="@+id/TextView02"
 	        android:ems="10"
 	        android:inputType="text"
-	        android:maxLength="20" >
+	        android:maxLength="20" 
+	        android:textColor="#ffffff"
+	        android:background="@drawable/search">
 
 	        <requestFocus />
 	    </EditText>
@@ -71,7 +69,8 @@
 	        android:layout_centerHorizontal="true"
 	        android:layout_centerVertical="true"
 	        android:text="@string/pillNumber"
-	        android:textSize="20sp" />
+	        android:textSize="20sp" 
+	        android:textColor="#ffffff"/>
 
 	    <EditText
 	        android:id="@+id/et_ps_prescription_amt"
@@ -82,16 +81,19 @@
 	        android:layout_below="@+id/TextView03"
 	        android:ems="10"
 	        android:inputType="number"
-	        android:maxLength="20" />
+	        android:maxLength="20" 
+	        android:background="@drawable/search"/>
 
 	    <Button
 	        android:id="@+id/b_ps_confirm"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/et_ps_prescription"
+	        android:layout_alignRight="@+id/et_ps_prescription"
 	        android:layout_below="@+id/et_ps_prescription_amt"
-	        android:layout_centerHorizontal="true"
 	        android:layout_marginTop="18dp"
-	        android:text="@string/confirm" />
+	        android:text="@string/confirm"
+	        android:background="@drawable/corner" />
 
 	    <TextView
 	        android:id="@+id/selected_patient_name"
@@ -99,6 +101,19 @@
 	        android:layout_height="wrap_content"
 	        android:layout_below="@+id/TextView01"
 	        android:layout_centerHorizontal="true"
-	        android:text="@string/testPatient" />
+	        android:text="@string/testPatient"
+	        android:textColor="#ffffff"
+	         />
+
+	    <Button
+	        android:id="@+id/b_ps_cancel"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/b_ps_confirm"
+	        android:layout_alignRight="@+id/b_ps_confirm"
+	        android:layout_below="@+id/b_ps_confirm"
+	        android:layout_marginTop="14dp"
+	        android:background="@drawable/corner"
+	        android:text="@string/cancel" />
 
 </RelativeLayout>
