@@ -7,12 +7,13 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="21" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-	<uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-    
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -30,8 +31,8 @@
         </activity>
         <activity
             android:name=".FillPrescript"
-            android:label="@string/title_activity_fill_prescript" 
-            android:screenOrientation="portrait">
+            android:label="@string/title_activity_fill_prescript"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".Nurse_Doctor"
@@ -40,39 +41,57 @@
         </activity>
         <activity
             android:name=".PatientMain"
-            android:label="@string/title_activity_patient_main" >
+            android:label="@string/title_activity_patient_main"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".PatientInfoFinal"
-            android:label="@string/title_activity_patient_info_final" >
+            android:label="@string/title_activity_patient_info_final"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".PharmacistMainFinal"
-            android:label="@string/title_activity_pharmacist_main_final" >
+            android:label="@string/title_activity_pharmacist_main_final"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".PatientVitalsFinal"
-            android:label="@string/title_activity_patient_vitals_final" >
+            android:label="@string/title_activity_patient_vitals_final"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".PrescriptionSubmission"
-            android:label="@string/title_activity_prescription_submission" >
+            android:label="@string/title_activity_prescription_submission"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".DoctorHome"
-            android:label="@string/title_activity_doctor_home" >
+            android:label="@string/title_activity_doctor_home"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".NursePatientInfo"
-            android:label="@string/title_activity_nurse_patient_info" >
+            android:label="@string/title_activity_nurse_patient_info"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".NurseHome"
-            android:label="@string/title_activity_nurse_home" >
+            android:label="@string/title_activity_nurse_home"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".NurseVitals"
-            android:label="@string/title_activity_nurse_vitals" >
+            android:label="@string/title_activity_nurse_vitals"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".View_note"
+            android:label="@string/title_activity_view_note"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Add_note"
+            android:label="@string/title_activity_add_note" >
         </activity>
     </application>
 
