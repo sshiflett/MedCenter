@@ -12,11 +12,14 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.R.bool;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -81,6 +84,121 @@ public class PatientInfoFinal extends Activity {
 		return stringBuilder.toString();
 
 	}
+	
+	private class getPatientInfo extends AsyncTask<String, Void,String>{
+	    @Override
+	    protected String doInBackground(String... urls){
+				return readJSONFeed(urls[0]);
+	    	}
+	    protected void onPostExecute(String result){
+	    	try
+	    	{
+		        	JSONObject patientObject = new JSONObject(result);
+		        	int status = patientObject.getInt("status");
+		    		final TextView heartRate = (TextView) findViewById(R.id.selected_patient_heart_rate);
+		    		final TextView breathingRate = (TextView) findViewById(R.id.selected_patient_breathing_rate);
+		    		final TextView rr = (TextView) findViewById(R.id.selected_patient_rr);
+		    		final TextView patientName = (TextView) findViewById(R.id.tv_patientName);
+		        
+					if(status == 404)
+					{
+						// Managed to reach the patient info screen with an invalid patient id
+						// More likely: An invalid patient id was bundled and recieved on this screen.
+			        	Toast.makeText(PatientInfoFinal.this, 
+			            	    "Something has gone terribly wrong.", Toast.LENGTH_SHORT).show();
+					}
+					else if(status == 302)
+					{
+							// Set textfields to patient info from patientObject.
+							String patientFirstName = patientObject.getString("first_name");
+							String patientLastName = patientObject.getString("first_name");
+							String fullPatientName = patientFirstName + " " + patientLastName;
+							patientName.setText(fullPatientName);
+							int patientHeartRate = patientObject.getInt("heart_rate");
+							heartRate.setText(patientHeartRate);
+							int patientBreathingRate = patientObject.getInt("breathing_rate");
+							breathingRate.setText(patientBreathingRate);
+							int patientRR = patientObject.getInt("respiration_rate");
+							rr.setText(patientRR);								
+					}
+	
+
+	    		
+	    	}catch(Exception e){
+	    		e.printStackTrace();
+	    	}
+	    }
+	}
+	
+	private class viewNotes extends AsyncTask<String, Void,String>{
+	    @Override
+	    protected String doInBackground(String... urls){
+				return readJSONFeed(urls[0]);
+	    	}
+	    protected void onPostExecute(String result){
+	    	try
+	    	{
+	    		
+	    			JSONObject noteObject = new JSONObject(result);
+
+	    			//---print out the content of the json feed---
+
+
+	    				int status = noteObject.getInt("status");
+	    				if(status == 302){
+	    					JSONArray noteArray = noteObject.getJSONArray("notes");
+	    					
+	    					for (int i = 0; i < noteArray.length(); i++) {
+	    						
+	    						JSONObject notesObject = noteArray.getJSONObject(i);
+	    						Toast.makeText(getBaseContext(),"Author: " + notesObject.getString("author") +
+	    						" - Note: " + notesObject.getString("note"),
+	 
+	    						Toast.LENGTH_LONG).show();
+	    				}
+	    			}
+
+	    		
+	    	}catch(Exception e){
+	    		e.printStackTrace();
+	    	}
+	    }
+	}
+	
+	private class viewPrescriptions extends AsyncTask<String, Void,String>{
+	    @Override
+	    protected String doInBackground(String... urls){
+				return readJSONFeed(urls[0]);
+	    	}
+	    protected void onPostExecute(String result){
+	    	try
+	    	{
+
+	    				JSONObject rxObject = new JSONObject(result);
+	    				int status = rxObject.getInt("status");
+	    				
+	    				if(status == 302){
+	    					JSONArray rxFeed = rxObject.getJSONArray("prescriptions");
+	    					for (int i = 0; i < rxFeed.length(); i++) {
+	    						JSONObject prescription = rxFeed.getJSONObject(i);
+	    						boolean filled = prescription.getBoolean("filled");
+	    						if(filled = true){
+	    							Toast.makeText(getBaseContext(),"Prescription: " + prescription.getString("name") + " " +
+	    						" - Count: " + prescription.getInt("count"),
+	 
+	    						Toast.LENGTH_LONG).show();
+	    				}
+	    				}
+	    			}
+
+	    		
+	    	}catch(Exception e){
+	    		e.printStackTrace();
+	    	}
+	    }
+	}
+	
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -88,56 +206,46 @@ public class PatientInfoFinal extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_patient_info_final);
 		
-		final TextView heartRate = (TextView) findViewById(R.id.selected_patient_heart_rate);
-		final TextView breathingRate = (TextView) findViewById(R.id.selected_patient_breathing_rate);
-		final TextView rr = (TextView) findViewById(R.id.selected_patient_rr);
-		final TextView patientName = (TextView) findViewById(R.id.tv_patientName);
+
 		
 		//Need to unbundle the patient id, set it to following variable and use it for database lookup.
-		int ubPatientId = 0;
+		Bundle unBundler = getIntent().getExtras();
+		final int ubPatientId = unBundler.getInt("Patient_Id");
 		
 		
-		String viewPatient = "http://173.78.61.249:8080/api/patient/?patient_id=" + ubPatientId;
-		String patientViewer = readJSONFeed(viewPatient);
+		String viewPatient = "http://104.131.116.247/api/patient/?patient_id=" + ubPatientId;
+		new getPatientInfo().execute(viewPatient);
 		
-        try{
-	        	JSONObject patientObject = new JSONObject(patientViewer);
-	        	int status = patientObject.getInt("status");
-	        
-				if(status == 404)
-				{
-					// Managed to reach the patient info screen with an invalid patient id
-					// More likely: An invalid patient id was bundled and recieved on this screen.
-		        	Toast.makeText(PatientInfoFinal.this, 
-		            	    "Something has gone terribly wrong.", Toast.LENGTH_SHORT).show();
-				}
-				else if(status == 302)
-				{
-						// Set textfields to patient info from patientObject.
-						String patientFirstName = patientObject.getString("first_name");
-						String patientLastName = patientObject.getString("first_name");
-						String fullPatientName = patientFirstName + " " + patientLastName;
-						patientName.setText(fullPatientName);
-						int patientHeartRate = patientObject.getInt("heart_rate");
-						heartRate.setText(patientHeartRate);
-						int patientBreathingRate = patientObject.getInt("breathing_rate");
-						breathingRate.setText(patientBreathingRate);
-						int patientRR = patientObject.getInt("respiration_rate");
-						rr.setText(patientRR);								
-				}
-        }
-        catch(JSONException e){
-        	//oops
-        }
-		//Need to set up notes
-        
-		Button next2 = (Button) findViewById(R.id.b_ps_cancel);
-		next2.setOnClickListener(new View.OnClickListener() {
+		Button viewNote = (Button) findViewById(R.id.b_pv_viewNote);
+		viewNote.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View b) {
+				String viewPatientNotes = "http://104.131.116.247/api/note/?patient_id="+ ubPatientId;
+				new viewNotes().execute(viewPatientNotes);
+				
+			}
 			
+		});
+
+		/*
+		 * 		Button viewPrescriptions = (Button) findViewById(R.id.b_pv_viewNote);
+				viewPrescriptions.setOnClickListener(new View.OnClickListener(){
+				@Override
+				public void onClick(View b) {
+					String viewPrescription = "http://104.131.116.247/api/prescription/?patient_id="+ ubPatientId;
+					new viewPrescriptions().execute(viewPrescription);
+				
+			}
+			
+		}); 
+		*/
+        
+		Button cancel = (Button) findViewById(R.id.b_ps_cancel);
+		cancel.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-			Intent shiftToPatientInfo = new Intent (v.getContext(), Nurse_Doctor.class);
-			startActivityForResult(shiftToPatientInfo, 0);
+			Intent shiftToHomeScreen = new Intent (v.getContext(), MainActivity.class);
+			startActivity(shiftToHomeScreen);
 			}
 			
 		});

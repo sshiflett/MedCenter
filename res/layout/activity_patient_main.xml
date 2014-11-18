@@ -82,7 +82,7 @@
         android:layout_above="@+id/b_ps_cancel"
         android:layout_alignLeft="@+id/s_pv_prescriptions"
         android:layout_marginBottom="16dp"
-        android:text="@string/give_rx" />
+        android:text="View Rx" />
 
     <Spinner
         android:id="@+id/s_pv_prescriptions"

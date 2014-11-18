@@ -85,6 +85,37 @@ public class MainActivity extends Activity {
 
 }
 	
+	private class Authenticate extends AsyncTask<String, Void,String>{
+	    @Override
+	    protected String doInBackground(String... urls){
+				return readJSONFeed(urls[0]);
+	    	}
+	    protected void onPostExecute(String result){
+	    	try
+	    	{
+	    		JSONObject loginObject = new JSONObject(result);
+	    		
+	            int status = loginObject.getInt("status");  
+	            // If authenticate status returns "forbidden", show error message using toast.
+	       	 	if(status == 403)
+	       	 	{
+	               	Toast.makeText(MainActivity.this, 
+	               	    "Your login was incorrect. Please try again.", Toast.LENGTH_SHORT).show();
+	            }
+	       	 	else if(status == 202)
+	       	 	{
+	       	 		JSONObject userObject = loginObject.getJSONObject("user");
+	       	 		int userId = userObject.getInt("id");
+	       	 		String userLookup = "http://104.131.116.247/api/user/?user_id="+userId;
+	       	 		new parseRole().execute(userLookup);	
+	       	 	}
+	    		
+	    	}catch(Exception e){
+	    		e.printStackTrace();
+	    	}
+	    }
+	}
+	
 	private class parseRole extends AsyncTask<String, Void,String>{
 	    @Override
 	    protected String doInBackground(String... urls){
@@ -96,10 +127,14 @@ public class MainActivity extends Activity {
 	    		JSONObject user = new JSONObject(httpResponse);
           		JSONObject userInfo = user.getJSONObject("user");
      			int role_id = userInfo.getInt("role");
+     			int patient_id = userInfo.getInt("patient_id");
 				Intent shiftToDoctorHome = new Intent (MainActivity.this, DoctorHome.class);
 				Intent shiftToPharm = new Intent (MainActivity.this, PharmacistMainFinal.class);
 				Intent shiftToNurseHome = new Intent (MainActivity.this, NurseHome.class);
-				Intent shiftToPatientHome = new Intent (MainActivity.this, PatientMain.class);
+				Intent shiftToPatientHome = new Intent (MainActivity.this, PatientInfoFinal.class);
+				Bundle idBundle = new Bundle();
+				idBundle.putInt("Patient_Id", patient_id);
+				shiftToPatientHome.putExtras(idBundle);
 				
 				if(role_id == 1){
 					startActivity(shiftToDoctorHome);
@@ -121,36 +156,6 @@ public class MainActivity extends Activity {
 }
 	
 
-	private class Authenticate extends AsyncTask<String, Void,String>{
-    @Override
-    protected String doInBackground(String... urls){
-			return readJSONFeed(urls[0]);
-    	}
-    protected void onPostExecute(String result){
-    	try
-    	{
-    		JSONObject loginObject = new JSONObject(result);
-    		
-            int status = loginObject.getInt("status");  
-            // If authenticate status returns "forbidden", show error message using toast.
-       	 	if(status == 403)
-       	 	{
-               	Toast.makeText(MainActivity.this, 
-               	    "Your login was incorrect. Please try again.", Toast.LENGTH_SHORT).show();
-            }
-       	 	else if(status == 202)
-       	 	{
-       	 		JSONObject userObject = loginObject.getJSONObject("user");
-       	 		int userId = userObject.getInt("id");
-       	 		String userLookup = "http://173.78.61.249:8080/api/user/?user_id="+userId;
-       	 		new parseRole().execute(userLookup);	
-       	 	}
-    		
-    	}catch(Exception e){
-    		e.printStackTrace();
-    	}
-    }
-}
 
 	
 	@Override
@@ -171,80 +176,9 @@ public class MainActivity extends Activity {
 		           	String userName = username.getText().toString();
 		        	String passWord = password.getText().toString();
 		        	
-		        	String httpRequest = "http://173.78.61.249:8080/api/authenticate/?username=" + userName + "&password=" + passWord;
+		        	String httpRequest = "http://104.131.116.247/api/authenticate/?username=" + userName + "&password=" + passWord;
 		        	new Authenticate().execute(httpRequest);
 		        	
-		        /*	
-		        try{
-		        	JSONObject loginObject;
-		            String httpRequest = "http://173.78.61.249:8080/api/authenticate/?username=" + userName + "&password=" + passWord;
-		            String httpResponse = readJSONFeed(httpRequest);
-		            loginObject = new JSONObject(httpResponse);
-		            
-		        	
-		        	// Use "authenticate" function, use response.
-		             
-		             int status = loginObject.getInt("status");  
-		        	// If authenticate status returns "forbidden", show error message using toast.
-		        	 if(status == 403)
-		        	 {
-		                	Toast.makeText(MainActivity.this, 
-		                	    "Your login was incorrect. Please try again.", Toast.LENGTH_SHORT).show();
-		             }
-		        	 else if(status == 202)
-		        	 	{
-		        	 		JSONObject userObject = loginObject.getJSONObject("user");
-		        	 		int userId = userObject.getInt("id");
-		        	 		// Send a request for user info using id returned from authenticate
-		             		String userLookup = "http://173.78.61.249:8080/api/user/?user_id="+userId;
-		             		String userResponse = readJSONFeed(userLookup);
-		       
-		             		
-		             		
-		                  		JSONObject user = new JSONObject(userResponse);
-		                  		JSONObject userInfo = user.getJSONObject("user");
-		             			int role_id = userInfo.getInt("role");
-		        				Intent shiftToDoctorHome = new Intent (v.getContext(), DoctorHome.class);
-		        				Intent shiftToPharm = new Intent (v.getContext(), PharmacistMainFinal.class);
-		        				Intent shiftToNurseHome = new Intent (v.getContext(), NurseHome.class);
-		        				Intent shiftToPatientHome = new Intent (v.getContext(), PatientMain.class);
-		        				
-		        				if(role_id == 1){
-		        					startActivity(shiftToDoctorHome);
-		        				}	
-		        				else if(role_id == 2){
-		        					startActivity(shiftToNurseHome);
-		        				}
-		        				else if(role_id == 3){
-		        					startActivity(shiftToPharm);
-		        				}
-		        				else if (role_id == 4){
-		        					startActivity(shiftToPatientHome);
-		        				}
-		             		}
-		             			//oops
-		             	}
-		        		
-		             
-		       catch(JSONException e)
-		        {
-		            	 //oops
-		        }
-		        
-		        catch(URISyntaxException ex)
-		        {
-		        	
-		        }
-		        catch(IOException ex)
-		        {
-		        	
-		        	
-		        }
-					
-				
-				}});
-			
-		*/
 				}
 			
 		});	

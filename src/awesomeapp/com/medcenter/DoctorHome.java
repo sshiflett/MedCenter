@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -27,7 +28,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 public class DoctorHome extends Activity {
+	public int patientId;
 	public String readJSONFeed(String URL) {
 
 		StringBuilder stringBuilder = new StringBuilder();
@@ -81,6 +84,42 @@ public class DoctorHome extends Activity {
 		return stringBuilder.toString();
 
 	}
+	private class foundPatient extends AsyncTask<String, Void,String>{
+	    @Override
+	    protected String doInBackground(String... urls){
+				return readJSONFeed(urls[0]);
+	    	}
+	    protected void onPostExecute(String result){
+	    	try
+	    	{
+				try
+				{
+					JSONObject patient = new JSONObject(result);
+					int status = patient.getInt("status");
+					if(status == 404)
+					{
+	                	Toast.makeText(DoctorHome.this, 
+		                	    "That is not a valid patient ID.", Toast.LENGTH_SHORT).show();
+					}
+					else if(status == 302)
+					{
+						//Bundle the patient id entered, send it to PatientInfoFinal.
+						Intent shiftToPatientInfo = new Intent (getApplicationContext(), PatientInfoFinal.class);
+						Bundle dataBundle = new Bundle();
+						dataBundle.putInt("PatientId", patientId);
+						shiftToPatientInfo.putExtras(dataBundle);
+						startActivity(shiftToPatientInfo);
+					}
+					
+				}
+				catch(JSONException e){
+					//oops
+				}
+	    	}catch(Exception e){
+	    		e.printStackTrace();
+	    	}
+	    }
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -97,28 +136,8 @@ public class DoctorHome extends Activity {
 			int patientId = Integer.parseInt(patientFinder.getText().toString());
 
 			
-			String patientSearch = "http://173.78.61.249:8080/api/patient/?patient_id=" + patientId;
-			String patientFound = readJSONFeed(patientSearch);
-			try
-			{
-				JSONObject patient = new JSONObject(patientFound);
-				int status = patient.getInt("status");
-				if(status == 404)
-				{
-                	Toast.makeText(DoctorHome.this, 
-	                	    "That is not a valid patient ID.", Toast.LENGTH_SHORT).show();
-				}
-				else if(status == 302)
-				{
-					//Bundle the patient id entered, send it to PatientInfoFinal.
-					Intent shiftToPatientInfo = new Intent (v.getContext(), PatientInfoFinal.class);
-					startActivityForResult(shiftToPatientInfo, 0);
-				}
-				
-			}
-			catch(JSONException e){
-				//oops
-			}
+			String patientSearch = "104.131.116.247/api/patient/?patient_id=" + patientId;
+			new foundPatient().execute(patientSearch);
 
 		}
 			

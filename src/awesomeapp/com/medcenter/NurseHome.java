@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -28,6 +29,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class NurseHome extends Activity {
+	public int patientId;
 	public String readJSONFeed(String URL) {
 
 		StringBuilder stringBuilder = new StringBuilder();
@@ -81,6 +83,42 @@ public class NurseHome extends Activity {
 		return stringBuilder.toString();
 
 	}
+	private class findPatient extends AsyncTask<String, Void,String>{
+	    @Override
+	    protected String doInBackground(String... urls){
+				return readJSONFeed(urls[0]);
+	    	}
+	    protected void onPostExecute(String result){
+	    	try
+	    	{
+				try
+				{
+					JSONObject patient = new JSONObject(result);
+					int status = patient.getInt("status");
+					if(status == 404)
+					{
+	                	Toast.makeText(NurseHome.this, 
+		                	    "That is not a valid patient ID.", Toast.LENGTH_SHORT).show();
+					}
+					else if(status == 302)
+					{
+						//Bundle the patient id entered, send it to PatientInfoFinal.
+						Intent shiftToPatientInfo = new Intent (getApplicationContext(), NursePatientInfo.class);
+						Bundle dataBundle = new Bundle();
+						dataBundle.putInt("PatientId", patientId);
+						shiftToPatientInfo.putExtras(dataBundle);
+						startActivity(shiftToPatientInfo);
+					}
+					
+				}
+				catch(JSONException e){
+					//oops
+				}
+	    	}catch(Exception e){
+	    		e.printStackTrace();
+	    	}
+	    }
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -91,34 +129,15 @@ public class NurseHome extends Activity {
 		final EditText nPatientFinder = (EditText) findViewById(R.id.et_prescription);
 		Button next = (Button) findViewById(R.id.b_ps_confirm);
 		next.setOnClickListener(new View.OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
-			int patientId = Integer.parseInt(nPatientFinder.getText().toString());
+			patientId = Integer.parseInt(nPatientFinder.getText().toString());
 
 			
-			String patientSearch = "http://173.78.61.249:8080/api/patient/?patient_id=" + patientId;
-			String patientFound = readJSONFeed(patientSearch);
-			try
-			{
-				JSONObject patient = new JSONObject(patientFound);
-				int status = patient.getInt("status");
-				if(status == 404)
-				{
-                	Toast.makeText(NurseHome.this, 
-	                	    "That is not a valid patient ID.", Toast.LENGTH_SHORT).show();
-				}
-				else if(status == 302)
-				{
-					//Bundle the patient id entered, send it to NursePatientInfo.
-					Intent shiftToPatientInfo = new Intent (v.getContext(), NursePatientInfo.class);
-					startActivityForResult(shiftToPatientInfo, 0);
-				}
-				
-			}
-			catch(JSONException e){
-				//oops
-			}
+			String patientSearch = "104.131.116.247/api/patient/?patient_id=" + patientId;
+			new findPatient().execute(patientSearch);
+
+	
 		}
 			
 		});
@@ -128,8 +147,8 @@ public class NurseHome extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-			Intent shiftToPatientInfo = new Intent (v.getContext(), MainActivity.class);
-			startActivityForResult(shiftToPatientInfo, 0);
+			Intent shiftToHomeScreen = new Intent (v.getContext(), MainActivity.class);
+			startActivity(shiftToHomeScreen);
 		}
 			
 		});
