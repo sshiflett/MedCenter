@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class NurseHome extends Activity {
@@ -125,10 +126,16 @@ public class NurseHome extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_nurse_home);
+		//Patient finder search box edit text w/e
+		final EditText nPatientFinder = (EditText) findViewById(R.id.et_input1);
+		//Text views for the table info
 		
-		final EditText nPatientFinder = (EditText) findViewById(R.id.et_prescription);
-		Button next = (Button) findViewById(R.id.b_ps_confirm);
-		next.setOnClickListener(new View.OnClickListener() {
+		//Button declarations
+		Button search = (Button) findViewById(R.id.b_ps_confirm);
+		Button logout = (Button) findViewById(R.id.b_dh_logout);
+		
+		//Search button event handler
+		search.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 			patientId = Integer.parseInt(nPatientFinder.getText().toString());
@@ -142,15 +149,16 @@ public class NurseHome extends Activity {
 			
 		});
 		
-		Button logout = (Button) findViewById(R.id.b_dh_logout);
+		//Logout event handler
 		logout.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 			Intent shiftToHomeScreen = new Intent (v.getContext(), MainActivity.class);
 			startActivity(shiftToHomeScreen);
-		}
+			}
 			
 		});
 	}
 }
+

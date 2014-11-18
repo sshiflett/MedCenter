@@ -201,7 +201,58 @@ public class NursePatientInfo extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_nurse_patient_info);
-	
+
+		
+		//Button initialization
+		Button b_cancel = (Button) findViewById(R.id.b_ps_cancel);
+		Button b_view_note = (Button) findViewById(R.id.b_viewNote);
+		Button b_add_note = (Button) findViewById(R.id.b_add_note);
+		Button b_add_vitals = (Button) findViewById(R.id.b_add_vitals);
+		//Textviews
+		final TextView heartRate = (TextView) findViewById(R.id.selected_patient_heart_rate);
+		final TextView breathingRate = (TextView) findViewById(R.id.selected_patient_breathing_rate);
+		final TextView rr = (TextView) findViewById(R.id.selected_patient_rr);
+		final TextView patientName = (TextView) findViewById(R.id.tv_patientName);
+		
+		//Button Handlers
+		
+		//cancel button handler
+		b_cancel.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+			Intent shiftToNurseHome = new Intent (v.getContext(), NurseHome.class);
+			startActivityForResult(shiftToNurseHome, 0);
+			}
+			
+		});//end cancel button
+		
+		
+		//view note button handler
+		b_view_note.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+			//Intent shiftToNurseHome = new Intent (v.getContext(), NurseHome.class);
+			//startActivityForResult(shiftToNurseHome, 0);
+			}
+			
+		});
+		//end view note button
+		
+		//add note button
+		b_add_note.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+			//Intent shiftToNurseHome = new Intent (v.getContext(), NurseHome.class);
+			//startActivityForResult(shiftToNurseHome, 0);
+			}
+		});
+		//end add not ebutton
+		
+		
+
 		//Need to unbundle the patient id, set it to following variable and use it for database lookup.
 		Bundle unBundler = getIntent().getExtras();
 		final int ubPatientId = unBundler.getInt("PatientId");
@@ -222,7 +273,7 @@ public class NursePatientInfo extends Activity {
 			
 		});
 
-		
+		/*
 		Button viewPrescriptions = (Button) findViewById(R.id.button1);
 		viewPrescriptions.setOnClickListener(new View.OnClickListener(){
 		@Override
@@ -232,10 +283,10 @@ public class NursePatientInfo extends Activity {
 				
 			}
 			
-		}); 
+		}); */
 		
 		//Shift to NurseVitals screen.
-		Button vitals = (Button) findViewById(R.id.button2);
+		Button vitals = (Button) findViewById(R.id.b_add_vitals);
 		vitals.setOnClickListener(new View.OnClickListener() {
 				
 			@Override
@@ -250,6 +301,7 @@ public class NursePatientInfo extends Activity {
 		});
 		
 		
+
 		Button cancel = (Button) findViewById(R.id.b_ps_cancel);
 		cancel.setOnClickListener(new View.OnClickListener() {
 			
@@ -260,5 +312,9 @@ public class NursePatientInfo extends Activity {
 			}
 			
 		});
+
+
+
+
 	}
 }

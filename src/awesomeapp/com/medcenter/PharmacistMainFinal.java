@@ -132,7 +132,7 @@ public class PharmacistMainFinal extends Activity {
 			@Override
 			public void onClick(View v) {
 				
-				final EditText nPatientFinder = (EditText) findViewById(R.id.et_prescription);
+				final EditText nPatientFinder = (EditText) findViewById(R.id.et_input1);
 				Button next = (Button) findViewById(R.id.b_ps_confirm);
 				next.setOnClickListener(new View.OnClickListener() {
 					@Override

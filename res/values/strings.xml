@@ -14,7 +14,6 @@
     <string name="record">Record</string>
     <string name="stop">Stop</string>
     <string name="notes">Notes</string>
- 
     <string name="give_rx">Give Rx</string>
     <string name="write_rx">Write Rx</string>
     <string name="view_note">View Note</string>
@@ -26,19 +25,17 @@
     <string name="patient_name1">Abraham Lincoln</string>
     <string name="patient_name2">John F Kennedy</string>
     <string name="patient_name3">Michael the Great</string>
-   
-    <string name= "selected_patient_name">Barack Obama</string>
-    <string name= "selected_patient_id">id</string>
-    <string name = "selected_patient_rr">40</string>
-    <string name = "selected_patient_heart_rate">500</string>
-    <string name= "selected_patient_breathing_rate">18</string>
-    <string name= "selected_patient_prescription1">Penicillin</string>
-    <string name= "selected_patient_prescription_amt1">50 mg</string>
-    <string name= "selected_patient_prescription2">Penicillin</string>
-    <string name= "selected_patient_prescription_amt2">50 mg</string>
-    <string name= "selected_patient_prescription3">Penicillin</string>
-    <string name= "selected_patient_prescription_amt3">50 mg</string>
-    
+    <string name="selected_patient_name">Barack Obama</string>
+    <string name="selected_patient_id">id</string>
+    <string name="selected_patient_rr">40</string>
+    <string name="selected_patient_heart_rate">500</string>
+    <string name="selected_patient_breathing_rate">18</string>
+    <string name="selected_patient_prescription1">Penicillin</string>
+    <string name="selected_patient_prescription_amt1">50 mg</string>
+    <string name="selected_patient_prescription2">Penicillin</string>
+    <string name="selected_patient_prescription_amt2">50 mg</string>
+    <string name="selected_patient_prescription3">Penicillin</string>
+    <string name="selected_patient_prescription_amt3">50 mg</string>
     <string name="notes1">Allergic to augmentin</string>
     <string name="notes2">Liquid diet only</string>
     <string name="notes3">Waiting for prescription</string>
@@ -86,5 +83,8 @@
     <string name="title_activity_nurse_patient_info">NursePatientInfo</string>
     <string name="title_activity_nurse_home">NurseHome</string>
     <string name="title_activity_nurse_vitals">NurseVitals</string>
+    <string name="title_activity_view_note">View_note</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_add_note">Add_note</string>
 
 </resources>
