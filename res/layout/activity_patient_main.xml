@@ -30,7 +30,7 @@
         android:textColor="#ffffff" />
 
     <TextView
-        android:id="@+id/selected_patient_breathing_rate"
+        android:id="@+id/selected_patient_heartrate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv2"
@@ -43,7 +43,7 @@
         android:id="@+id/tv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/selected_patient_breathing_rate"
+        android:layout_below="@+id/selected_patient_heartrate"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:text="Respiration Rate"
@@ -55,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_alignLeft="@+id/selected_patient_breathing_rate"
+        android:layout_alignLeft="@+id/selected_patient_heartrate"
         android:layout_below="@+id/tv1"
         android:text="@string/selected_patient_rr"
         android:textColor="#ffffff"

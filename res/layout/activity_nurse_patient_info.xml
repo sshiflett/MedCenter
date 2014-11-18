@@ -19,7 +19,7 @@
         android:textColor="#ffffff"/>
 
     <TextView
-        android:id="@+id/selected_patient_breathing_rate"
+        android:id="@+id/selected_patient_heartrate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv2"
