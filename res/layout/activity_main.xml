@@ -6,64 +6,58 @@
     tools:context="${relativePackage}.${activityClass}"
     android:screenOrientation="portrait" >
 
+    <EditText
+        android:id="@+id/et_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:background="#ffffff"
+        android:ems="10"
+        android:inputType="text" />
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_alignLeft="@+id/et_user_name"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="60dp"
         android:text="@string/username"
-        android:textColor="#00B8E6"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#00B8E6" />
 
     <EditText
         android:id="@+id/et_input2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
-        android:layout_marginLeft="44dp"
+        android:layout_alignLeft="@+id/et_user_name"
+        android:layout_alignRight="@+id/et_user_name"
+        android:layout_below="@+id/patient_doctor"
+        android:background="#ffffff"
         android:ems="10"
-        android:inputType="textPassword"
-        android:background="#ffffff" >
-
-        <requestFocus />
-    </EditText>
+        android:inputType="textPassword" />
 
     <TextView
         android:id="@+id/patient_doctor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/et_input2"
-        android:layout_marginLeft="44dp"
+        android:layout_alignLeft="@+id/et_input2"
+        android:layout_below="@+id/et_user_name"
+        android:layout_marginTop="14dp"
         android:text="@string/password"
-        android:textColor="#00B8E6"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <EditText
-        android:id="@+id/et_user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/et_input2"
-        android:layout_below="@+id/patient_doctor"
-        android:layout_marginLeft="44dp"
-        android:ems="10"
-        android:background="#ffffff"
-        android:inputType="text" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#00B8E6" />
 
     <Button
         android:id="@+id/b_ps_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/et_user_name"
-        android:layout_alignRight="@+id/et_user_name"
-        android:layout_below="@+id/et_user_name"
-        android:layout_marginTop="58dp"
-        android:text="@string/loginButton"
-        android:background="@drawable/corner"/>
+        android:layout_alignLeft="@+id/et_input2"
+        android:layout_alignRight="@+id/et_input2"
+        android:layout_below="@+id/et_input2"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/corner"
+        android:text="@string/loginButton" />
 
 </RelativeLayout>
