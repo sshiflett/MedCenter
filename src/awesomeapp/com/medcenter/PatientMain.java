@@ -94,8 +94,7 @@ public class PatientMain extends Activity {
 	    	{
 		        	JSONObject patientObject = new JSONObject(result);
 		        	int status = patientObject.getInt("status");
-		    		final TextView heartRate = (TextView) findViewById(R.id.selected_patient_heart_rate);
-		    		final TextView breathingRate = (TextView) findViewById(R.id.selected_patient_breathing_rate);
+		    		final TextView heartRate = (TextView) findViewById(R.id.selected_patient_heartrate);
 		    		final TextView rr = (TextView) findViewById(R.id.selected_patient_rr);
 		    		final TextView patientName = (TextView) findViewById(R.id.tv_patientName);
 		        
@@ -109,15 +108,14 @@ public class PatientMain extends Activity {
 					else if(status == 302)
 					{
 							// Set textfields to patient info from patientObject.
-							String patientFirstName = patientObject.getString("first_name");
-							String patientLastName = patientObject.getString("first_name");
+							JSONObject patientInfo = patientObject.getJSONObject("user");
+							String patientFirstName = patientInfo.getString("first_name");
+							String patientLastName = patientInfo.getString("last_name");
 							String fullPatientName = patientFirstName + " " + patientLastName;
 							patientName.setText(fullPatientName);
-							int patientHeartRate = patientObject.getInt("heart_rate");
+							int patientHeartRate = patientInfo.getInt("heart_rate");
 							heartRate.setText(patientHeartRate);
-							int patientBreathingRate = patientObject.getInt("breathing_rate");
-							breathingRate.setText(patientBreathingRate);
-							int patientRR = patientObject.getInt("respiration_rate");
+							int patientRR = patientInfo.getInt("respiration_rate");
 							rr.setText(patientRR);								
 					}
 	
@@ -156,6 +154,11 @@ public class PatientMain extends Activity {
 	    						Toast.LENGTH_LONG).show();
 	    				}
 	    			}
+	    				else
+	    				{
+	    					Toast.makeText(PatientMain.this, 
+				            	    "Something has gone terribly wrong.", Toast.LENGTH_SHORT).show();
+	    				}
 
 	    		
 	    	}catch(Exception e){

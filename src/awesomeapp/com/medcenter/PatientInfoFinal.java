@@ -97,7 +97,7 @@ public class PatientInfoFinal extends Activity {
 			        	JSONObject patientObject = new JSONObject(result);
 			        	int status = patientObject.getInt("status");
 			    		final TextView heartRate = (TextView) findViewById(R.id.selected_patient_heart_rate);
-			    		final TextView breathingRate = (TextView) findViewById(R.id.selected_patient_breathing_rate);
+			    		final TextView breathingRate = (TextView) findViewById(R.id.selected_patient_heartrate);
 			    		final TextView rr = (TextView) findViewById(R.id.selected_patient_rr);
 			    		final TextView patientName = (TextView) findViewById(R.id.tv_patientName);
 			        
