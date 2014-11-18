@@ -91,7 +91,8 @@
         </activity>
         <activity
             android:name=".Add_note"
-            android:label="@string/title_activity_add_note" >
+            android:label="@string/title_activity_add_note"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 
