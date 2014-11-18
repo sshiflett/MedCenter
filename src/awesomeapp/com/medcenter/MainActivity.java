@@ -1,5 +1,21 @@
 package awesomeapp.com.medcenter;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -26,7 +42,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;    
 import org.json.JSONException;
 import org.json.JSONObject;
-
 
 
 public class MainActivity extends Activity {
@@ -157,17 +172,40 @@ public class MainActivity extends Activity {
 	
 @Override
 public void onBackPressed() {
-
+	finish();
 }	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
+		int READ_BLOCK_SIZE= 20;
+		
+		//LOAD PREVIOUSLY USERNAME SAVED DATA IF THERE IS SOME
+		try
+		{
+			FileInputStream fIn = openFileInput("user_name.txt");
+			InputStreamReader isr = new
+			InputStreamReader(fIn);
+			//input buffer for username
+			char[] inputBuffer = new char[READ_BLOCK_SIZE];
+			String s = "";
+			int charRead;
+				if((charRead = isr.read(inputBuffer)) > 0)
+				{
+					s = String.copyValueOf(inputBuffer,0, charRead);
+				}
+				EditText username = (EditText) findViewById(R.id.et_user_name);
+				username.setText(s);
+				}
+				//The first time the app is loaded an unfound file exception will be thrown
+				catch(IOException ioe)
+				{
+					
+				}//END LOAD
 		
 		Button next = (Button) findViewById(R.id.b_ps_confirm);
 		next.setOnClickListener(new View.OnClickListener() {
-	
 				@Override
 				public void onClick(View v) {
 		        	// Get entered text from EditText boxes.
@@ -177,10 +215,37 @@ public void onBackPressed() {
 		           	String userName = username.getText().toString();
 		        	String passWord = password.getText().toString();
 		        	
+		        	try
+		        	{
+		        		FileOutputStream fOut =openFileOutput("user_name.txt",MODE_PRIVATE);
+		        		//Write username to the file
+		        		OutputStreamWriter osw = new
+		        				OutputStreamWriter(fOut);
+		        		osw.write(userName);
+		        		osw.flush();
+		        		osw.close();
+		        	}
+		        	catch(IOException ioe)
+		        	{
+		        		//Do nothing if unsuccesful so we dont crash our app!
+		        	}
+		        	
 		        	String httpRequest = "http://104.131.116.247/api/authenticate/?username=" + userName + "&password=" + passWord;
 		        	new Authenticate().execute(httpRequest);
+		        	finish();
 		        	
 				}
 			
 		});	
-}}
+		
+		Button exit = (Button) findViewById(R.id.b_ps_exit);
+		exit.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v){
+				finish();
+			}
+	});
+		
+	}
+}
+
