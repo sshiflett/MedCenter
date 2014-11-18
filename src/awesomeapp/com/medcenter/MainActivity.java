@@ -26,7 +26,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;    
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONTokener;
+
 
 
 public class MainActivity extends Activity {
@@ -105,7 +105,7 @@ public class MainActivity extends Activity {
 	       	 	else if(status == 202)
 	       	 	{
 	       	 		JSONObject userObject = loginObject.getJSONObject("user");
-	       	 		int userId = userObject.getInt("user_id");
+	       	 		int userId = userObject.getInt("id");
 	       	 		String userLookup = "http://104.131.116.247/api/user/?user_id="+userId;
 	       	 		patientId = userObject.getInt("patient_id");
 	       	 		new parseRole().execute(userLookup);	

@@ -151,7 +151,6 @@ public class NursePatientInfo extends Activity {
 	    						JSONObject notesObject = noteArray.getJSONObject(i);
 	    						Toast.makeText(getBaseContext(),"Author: " + notesObject.getString("author") +
 	    						" - Note: " + notesObject.getString("note"),
-	 
 	    						Toast.LENGTH_LONG).show();
 	    				}
 	    			}
@@ -202,57 +201,7 @@ public class NursePatientInfo extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_nurse_patient_info);
 
-		
-		//Button initialization
-		Button b_cancel = (Button) findViewById(R.id.b_ps_cancel);
-		Button b_view_note = (Button) findViewById(R.id.b_viewNote);
-		Button b_add_note = (Button) findViewById(R.id.b_add_note);
-		Button b_add_vitals = (Button) findViewById(R.id.b_add_vitals);
-		//Textviews
-		final TextView heartRate = (TextView) findViewById(R.id.selected_patient_heart_rate);
-		final TextView breathingRate = (TextView) findViewById(R.id.selected_patient_heartrate);
-		final TextView rr = (TextView) findViewById(R.id.selected_patient_rr);
-		final TextView patientName = (TextView) findViewById(R.id.tv_patientName);
-		
-		//Button Handlers
-		
-		//cancel button handler
-		b_cancel.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-			Intent shiftToNurseHome = new Intent (v.getContext(), NurseHome.class);
-			startActivityForResult(shiftToNurseHome, 0);
-			}
-			
-		});//end cancel button
-		
-		
-		//view note button handler
-		b_view_note.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-			//Intent shiftToNurseHome = new Intent (v.getContext(), NurseHome.class);
-			//startActivityForResult(shiftToNurseHome, 0);
-			}
-			
-		});
-		//end view note button
-		
-		//add note button
-		b_add_note.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-			//Intent shiftToNurseHome = new Intent (v.getContext(), NurseHome.class);
-			//startActivityForResult(shiftToNurseHome, 0);
-			}
-		});
-		//end add not ebutton
-		
-		
-
+	
 		//Need to unbundle the patient id, set it to following variable and use it for database lookup.
 		Bundle unBundler = getIntent().getExtras();
 		final int ubPatientId = unBundler.getInt("PatientId");
@@ -298,6 +247,20 @@ public class NursePatientInfo extends Activity {
 					startActivity(shiftToNurseVitals);
 					}
 					
+		});
+		
+		Button addNote = (Button) findViewById(R.id.b_add_note);
+		addNote.setOnClickListener(new View.OnClickListener(){
+		@Override
+		public void onClick(View b) {
+			Intent shiftToAddNote = new Intent (b.getContext(), Add_note.class);
+			Bundle pidBundle = new Bundle();
+			pidBundle.putInt("PatientId", ubPatientId);
+			//pidBundle.putInt("UserID", ubUserID);
+			shiftToAddNote.putExtras(pidBundle);
+			startActivity(shiftToAddNote);	
+			}
+			
 		});
 		
 		

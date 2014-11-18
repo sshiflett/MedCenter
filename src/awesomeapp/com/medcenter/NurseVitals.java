@@ -1,8 +1,20 @@
 package awesomeapp.com.medcenter;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 
 import zephyr.android.BioHarnessBT.BTClient;
 import zephyr.android.BioHarnessBT.ZephyrProtocol;
@@ -24,7 +36,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+
 public class NurseVitals extends Activity {
+	
+	int respirationRateInt;
+	int heartRateInt;
     /** Called when the activity is first created. */
 	BluetoothAdapter adapter = null;
 	BTClient _bt;
@@ -113,11 +130,11 @@ public class NurseVitals extends Activity {
 	        			
 	        			TextView heartRateTV = (EditText)findViewById(R.id.et_heartRate);
 	        			String heartRate = heartRateTV.getText().toString();
-	        			final int heartRateInt = Integer.parseInt(heartRate);
+	        			heartRateInt = Integer.parseInt(heartRate);
 	        			
 	        			TextView respirationRateTV = (EditText)findViewById(R.id.et_respirationRate);
 	        			String respirationRate = heartRateTV.getText().toString();
-	        			final int respirationRateInt = Integer.parseInt(respirationRate);
+	        			respirationRateInt = Integer.parseInt(respirationRate);
 	        			
 
 	        		}

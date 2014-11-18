@@ -97,7 +97,6 @@ public class PatientInfoFinal extends Activity {
 			        	JSONObject patientObject = new JSONObject(result);
 			        	int status = patientObject.getInt("status");
 			    		final TextView heartRate = (TextView) findViewById(R.id.selected_patient_heart_rate);
-			    		final TextView breathingRate = (TextView) findViewById(R.id.selected_patient_heartrate);
 			    		final TextView rr = (TextView) findViewById(R.id.selected_patient_rr);
 			    		final TextView patientName = (TextView) findViewById(R.id.tv_patientName);
 			        
@@ -111,16 +110,15 @@ public class PatientInfoFinal extends Activity {
 						else if(status == 302)
 						{
 								// Set textfields to patient info from patientObject.
-								String patientFirstName = patientObject.getString("first_name");
-								String patientLastName = patientObject.getString("first_name");
-								String fullPatientName = patientFirstName + " " + patientLastName;
-								patientName.setText(fullPatientName);
-								int patientHeartRate = patientObject.getInt("heart_rate");
-								heartRate.setText(patientHeartRate);
-								int patientBreathingRate = patientObject.getInt("breathing_rate");
-								breathingRate.setText(patientBreathingRate);
-								int patientRR = patientObject.getInt("respiration_rate");
-								rr.setText(patientRR);								
+							JSONObject patientInfo = patientObject.getJSONObject("user");
+							String patientFirstName = patientInfo.getString("first_name");
+							String patientLastName = patientInfo.getString("last_name");
+							String fullPatientName = patientFirstName + " " + patientLastName;
+							patientName.setText(fullPatientName);
+							int patientHeartRate = patientInfo.getInt("heart_rate");
+							heartRate.setText(patientHeartRate);
+							int patientRR = patientInfo.getInt("respiration_rate");
+							rr.setText(patientRR);								
 						}
 		
 
@@ -256,13 +254,12 @@ private class dViewPrescriptions extends AsyncTask<String, Void,String>{
 		addNote.setOnClickListener(new View.OnClickListener(){
 		@Override
 		public void onClick(View b) {
-			Intent shiftToDoctorVitals = new Intent (b.getContext(), PatientVitalsFinal.class);
+			Intent shiftToAddNote = new Intent (b.getContext(), Add_note.class);
 			Bundle pidBundle = new Bundle();
 			pidBundle.putInt("PatientId", ubPatientId);
-			shiftToDoctorVitals.putExtras(pidBundle);
-			startActivity(shiftToDoctorVitals);
-
-				
+			//pidBundle.putInt("UserID", ubUserID);
+			shiftToAddNote.putExtras(pidBundle);
+			startActivity(shiftToAddNote);	
 			}
 			
 		});
@@ -275,6 +272,7 @@ private class dViewPrescriptions extends AsyncTask<String, Void,String>{
 			Bundle pidBundle = new Bundle();
 			pidBundle.putInt("PatientId", ubPatientId);
 			//According to prescription screen I also need to bundle user id. Sad times.
+			//pidBundle.putInt("UserID", ubUserID);
 			shiftToRxSubmission.putExtras(pidBundle);
 			startActivity(shiftToRxSubmission);	
 			}

@@ -154,12 +154,6 @@ public class PatientMain extends Activity {
 	    						Toast.LENGTH_LONG).show();
 	    				}
 	    			}
-	    				else
-	    				{
-	    					Toast.makeText(PatientMain.this, 
-				            	    "Something has gone terribly wrong.", Toast.LENGTH_SHORT).show();
-	    				}
-
 	    		
 	    	}catch(Exception e){
 	    		e.printStackTrace();
