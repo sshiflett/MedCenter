@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     tools:context="${relativePackage}.${activityClass}" >
 
     <TextView
@@ -13,6 +14,7 @@
         android:layout_marginLeft="44dp"
         android:layout_marginTop="56dp"
         android:text="@string/username"
+        android:textColor="#00B8E6"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
@@ -23,7 +25,8 @@
         android:layout_below="@+id/textView1"
         android:layout_marginLeft="44dp"
         android:ems="10"
-        android:inputType="textPassword" >
+        android:inputType="textPassword"
+        android:background="#ffffff" >
 
         <requestFocus />
     </EditText>
@@ -36,6 +39,7 @@
         android:layout_below="@+id/et_input2"
         android:layout_marginLeft="44dp"
         android:text="@string/password"
+        android:textColor="#00B8E6"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
@@ -47,6 +51,7 @@
         android:layout_below="@+id/patient_doctor"
         android:layout_marginLeft="44dp"
         android:ems="10"
+        android:background="#ffffff"
         android:inputType="text" />
 
     <Button
@@ -57,6 +62,7 @@
         android:layout_alignRight="@+id/et_user_name"
         android:layout_below="@+id/et_user_name"
         android:layout_marginTop="58dp"
-        android:text="@string/loginButton" />
+        android:text="@string/loginButton"
+        android:background="@drawable/corner"/>
 
 </RelativeLayout>

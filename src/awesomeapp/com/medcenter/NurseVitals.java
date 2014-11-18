@@ -37,10 +37,6 @@ public class NurseVitals extends Activity {
 	int respRate=0;
 	
 	
-	
-	
-	
-	
 	  @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);

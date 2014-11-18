@@ -2,15 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/patient_name3"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-    <Button
-        android:id="@+id/b_ps_confirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/et_input1"
-        android:layout_below="@+id/et_input1"
-        android:text="@string/search" />
+    android:layout_height="match_parent"
+    android:background = "#000000" >
 
     <TextView
         android:id="@+id/textView1"
@@ -19,7 +12,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
-        android:text="@string/patientInfo" />
+        android:text="@string/patientInfo" 
+        android:textColor = "#ffffff"/>
 
     <EditText
         android:id="@+id/et_input1"
@@ -28,7 +22,8 @@
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:ems="10"
-        android:inputType="text" >
+        android:inputType="text" 
+        android:background = "@drawable/search">
         
         <requestFocus />
     </EditText>
@@ -41,6 +36,18 @@
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/b_ps_confirm"
         android:layout_marginBottom="58dp"
-        android:text="@string/logout" />
+        android:text="@string/logout"
+        android:background="@drawable/corner" />
+
+    <Button
+        android:id="@+id/b_ps_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/et_input1"
+        android:layout_alignRight="@+id/et_input1"
+        android:layout_below="@+id/et_input1"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/corner"
+        android:text="@string/search" />
 
 </RelativeLayout>
