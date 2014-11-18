@@ -48,17 +48,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#00A300" />
 
-    <Button
-        android:id="@+id/b_ps_confirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/et_input2"
-        android:layout_alignRight="@+id/et_user_name"
-        android:layout_below="@+id/et_input2"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/corner"
-        android:text="@string/loginButton" />
-
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
@@ -68,6 +57,29 @@
         android:layout_marginTop="24dp"
         android:text="MedCenter"
         android:textColor="#ffffff"
-        android:textSize="40dp" />
+        android:textSize="40dp" 
+        />
+
+    <Button
+        android:id="@+id/b_ps_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/et_input2"
+        android:layout_alignRight="@+id/et_input2"
+        android:layout_below="@+id/et_input2"
+        android:layout_marginTop="54dp"
+        android:background="@drawable/corner"
+        android:text="@string/loginButton" />
+
+    <Button
+        android:id="@+id/b_ps_exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/b_ps_confirm"
+        android:layout_alignRight="@+id/b_ps_confirm"
+        android:layout_below="@+id/b_ps_confirm"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/corner"
+        android:text="Exit" />
 
 </RelativeLayout>

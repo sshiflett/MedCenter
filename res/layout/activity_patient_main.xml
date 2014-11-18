@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
-        android:text="@string/selected_patient_name"
+        android:text="John Doe"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#ffffff" />
 
@@ -25,7 +25,7 @@
         android:layout_below="@+id/tv_patientName"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
-        android:text="Temperature"
+        android:text="Heart Rate"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#ffffff" />
 
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv2"
         android:layout_centerHorizontal="true"
-        android:text="@string/selected_patient_breathing_rate"
+        android:text="N/A"
         android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -57,7 +57,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignLeft="@+id/selected_patient_heartrate"
         android:layout_below="@+id/tv1"
-        android:text="@string/selected_patient_rr"
+        android:text="N/A"
         android:textColor="#ffffff"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
