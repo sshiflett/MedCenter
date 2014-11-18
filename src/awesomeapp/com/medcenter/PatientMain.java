@@ -181,7 +181,7 @@ public class PatientMain extends Activity {
 	    					for (int i = 0; i < rxFeed.length(); i++) {
 	    						JSONObject prescription = rxFeed.getJSONObject(i);
 	    						boolean filled = prescription.getBoolean("filled");
-	    						if(filled = true){
+	    						if(filled == true){
 	    							Toast.makeText(getBaseContext(),"Prescription: " + prescription.getString("name") + " " +
 	    						" - Count: " + prescription.getInt("count"),
 	 
@@ -203,7 +203,7 @@ public class PatientMain extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.activity_patient_info_final);
+		setContentView(R.layout.activity_patient_main);
 		
 
 		
@@ -218,12 +218,10 @@ public class PatientMain extends Activity {
 		Button viewNote = (Button) findViewById(R.id.b_pv_viewNote);
 		viewNote.setOnClickListener(new View.OnClickListener(){
 			@Override
-			public void onClick(View b) {
+			public void onClick(View v) {
 				String viewPatientNotes = "http://104.131.116.247/api/note/?patient_id="+ ubPatientId;
-				new viewNotes().execute(viewPatientNotes);
-				
+				new viewNotes().execute(viewPatientNotes);	
 			}
-			
 		});
 
 		/*

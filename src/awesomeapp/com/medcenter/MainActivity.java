@@ -30,7 +30,7 @@ import org.json.JSONTokener;
 
 
 public class MainActivity extends Activity {
-	
+	int patientId;
 	public String readJSONFeed(String URL) {
 
 		StringBuilder stringBuilder = new StringBuilder();
@@ -105,12 +105,13 @@ public class MainActivity extends Activity {
 	       	 	else if(status == 202)
 	       	 	{
 	       	 		JSONObject userObject = loginObject.getJSONObject("user");
-	       	 		int userId = userObject.getInt("id");
+	       	 		int userId = userObject.getInt("user_id");
 	       	 		String userLookup = "http://104.131.116.247/api/user/?user_id="+userId;
+	       	 		patientId = userObject.getInt("patient_id");
 	       	 		new parseRole().execute(userLookup);	
 	       	 	}
 	    		
-	    	}catch(Exception e){
+	    	}catch(JSONException e){
 	    		e.printStackTrace();
 	    	}
 	    }
@@ -127,29 +128,28 @@ public class MainActivity extends Activity {
 	    		JSONObject user = new JSONObject(httpResponse);
           		JSONObject userInfo = user.getJSONObject("user");
      			int role_id = userInfo.getInt("role");
-     			int patient_id = userInfo.getInt("patient_id");
-				Intent shiftToDoctorHome = new Intent (MainActivity.this, DoctorHome.class);
-				Intent shiftToPharm = new Intent (MainActivity.this, PharmacistMainFinal.class);
-				Intent shiftToNurseHome = new Intent (MainActivity.this, NurseHome.class);
-				Intent shiftToPatientHome = new Intent (MainActivity.this, PatientInfoFinal.class);
-				Bundle idBundle = new Bundle();
-				idBundle.putInt("Patient_Id", patient_id);
-				shiftToPatientHome.putExtras(idBundle);
-				
+
 				if(role_id == 1){
+					Intent shiftToDoctorHome = new Intent (MainActivity.this, DoctorHome.class);
 					startActivity(shiftToDoctorHome);
 				}	
 				else if(role_id == 2){
+					Intent shiftToNurseHome = new Intent (MainActivity.this, NurseHome.class);
 					startActivity(shiftToNurseHome);
 				}
 				else if(role_id == 3){
+					Intent shiftToPharm = new Intent (MainActivity.this, PharmacistMainFinal.class);
 					startActivity(shiftToPharm);
 				}
 				else if (role_id == 4){
+					Intent shiftToPatientHome = new Intent (MainActivity.this, PatientMain.class);
+					Bundle idBundle = new Bundle();
+					idBundle.putInt("Patient_Id", patientId);
+					shiftToPatientHome.putExtras(idBundle);
 					startActivity(shiftToPatientHome);
 				}
 	    		
-	    	}catch(Exception e){
+	    	}catch(JSONException e){
 	    		e.printStackTrace();
 	    	}
 	    }

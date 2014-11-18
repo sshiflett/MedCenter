@@ -203,7 +203,7 @@ private class dViewPrescriptions extends AsyncTask<String, Void,String>{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.activity_patient_main);
+		setContentView(R.layout.activity_patient_info_final);
 		
 		//Need to unbundle the patient id, set it to following variable and use it for database lookup.
 		Bundle unBundler = getIntent().getExtras();
