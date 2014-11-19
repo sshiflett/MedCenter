@@ -43,6 +43,7 @@ public class Nurse_Doctor extends Activity {
 			public void onClick(View v) {
 			Intent shiftToPatientInfo = new Intent (v.getContext(), MainActivity.class);
 			startActivityForResult(shiftToPatientInfo, 0);
+			finish();
 		}
 			
 		});//end logout event handler

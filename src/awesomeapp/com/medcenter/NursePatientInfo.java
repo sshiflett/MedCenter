@@ -273,6 +273,7 @@ public class NursePatientInfo extends Activity {
 			public void onClick(View v) {
 			Intent shiftToNurseHome = new Intent (v.getContext(), NurseHome.class);
 			startActivity(shiftToNurseHome);
+			finish();
 			}
 			
 		});

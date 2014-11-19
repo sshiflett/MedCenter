@@ -200,7 +200,8 @@ public class PrescriptionSubmission extends Activity {
 			@Override
 			public void onClick(View v) {
 			Intent shiftToPatientInfo = new Intent (v.getContext(), PatientInfoFinal.class);
-			startActivity(shiftToPatientInfo);
+			startActivityForResult(shiftToPatientInfo, 0);
+			finish();
 		}
 			
 		});

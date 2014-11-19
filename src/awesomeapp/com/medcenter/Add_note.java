@@ -28,6 +28,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -106,7 +107,7 @@ public class Add_note extends Activity {
 	    		JSONObject noteObject = new JSONObject(result);
 	    		
 	    		int status = noteObject.getInt("status");
-	    		if(status == 202)
+	    		if(status == 201)
 	    		{
 	    			Toast.makeText(Add_note.this, 
 		               	    "Your note was created.", Toast.LENGTH_SHORT).show();
@@ -189,6 +190,19 @@ public class Add_note extends Activity {
 			}
 			
 		});
+		
+		 Button closeActivity= (Button) findViewById(R.id.b_ps_cancel);
+	        if (closeActivity != null)
+	        {
+	        	closeActivity.setOnClickListener(new OnClickListener() 
+	        	{
+	        		public void onClick(View v) {
+	        			finish();
+	        			
+
+	        		}
+	        	});
+	        }     
 	}
 
 	@Override

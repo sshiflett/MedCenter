@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background = "#000000" >
+    android:background="#000000" >
 
     <TextView
         android:id="@+id/textView1"
@@ -12,8 +12,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="@string/prescriptionWriter"
-        android:textSize="20sp" 
-        android:textColor = "#ffffff"/>
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/patient_doctor"
@@ -22,7 +22,7 @@
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:text="@string/doctor"
-        android:textColor = "#ffffff" />
+        android:textColor="#ffffff" />
 
     <TextView
         android:id="@+id/selected_patient_name"
@@ -31,7 +31,7 @@
         android:layout_below="@+id/TextView01"
         android:layout_centerHorizontal="true"
         android:text="@string/selected_patient_name"
-        android:textColor = "#ffffff" />
+        android:textColor="#ffffff" />
 
     <TextView
         android:id="@+id/TextView01"
@@ -72,17 +72,18 @@
         android:id="@+id/spinner1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignRight="@+id/textView1"
         android:layout_below="@+id/selected_patient_name"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="55dp" />
+        android:layout_marginTop="55dp"/>
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/selected_patient_name"
-        android:layout_marginTop="16dp"
-        android:layout_toLeftOf="@+id/selected_patient_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
         android:text="Prescriptions:"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#ffffff" />
@@ -91,8 +92,9 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_below="@+id/spinner1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp"
         android:text="Rejected Prescription Id:"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#ffffff" />
@@ -101,9 +103,9 @@
         android:id="@+id/editText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView3"
-        android:background="#ffffff"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/search"
         android:ems="10" />
 
 </RelativeLayout>

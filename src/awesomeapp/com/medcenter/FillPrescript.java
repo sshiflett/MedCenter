@@ -274,6 +274,7 @@ public class FillPrescript extends Activity {
 			public void onClick(View v) {
 			Intent shiftToPharmHome = new Intent (v.getContext(), PharmacistMainFinal.class);
 			startActivity(shiftToPharmHome);
+			finish();
 				
 			}
 		});
