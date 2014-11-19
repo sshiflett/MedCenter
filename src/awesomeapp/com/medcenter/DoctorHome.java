@@ -138,7 +138,7 @@ public class DoctorHome extends Activity {
 			Bundle unBundler = getIntent().getExtras();
 			userId = unBundler.getInt("UserId");
 			
-			String patientSearch = "http://104.131.116.247/api/patient/?patient_id=" + patientId;
+			String patientSearch = "http://104.131.116.247/api/patient/?patient_id=" + patientId + "&method=get-patient";
 			new foundPatient().execute(patientSearch);
 
 		}

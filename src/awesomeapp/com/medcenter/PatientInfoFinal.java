@@ -101,6 +101,8 @@ public class PatientInfoFinal extends Activity {
 			    		final TextView heartRate = (TextView) findViewById(R.id.selected_patient_heart_rate);
 			    		final TextView respirationRate = (TextView) findViewById(R.id.selected_patient_heartrate);
 			    		final TextView patientName = (TextView) findViewById(R.id.tv_patientName);
+			    		final int patientHeartRate;
+			    		final int patientRR;
 			        
 						if(status == 404)
 						{
@@ -117,10 +119,10 @@ public class PatientInfoFinal extends Activity {
 							String patientLastName = patientInfo.getString("last_name");
 							String fullPatientName = patientFirstName + " " + patientLastName;
 							patientName.setText(fullPatientName);
-							int patientHeartRate = patientInfo.getInt("heart_rate");
-							heartRate.setText(patientHeartRate);
-							int patientRR = patientInfo.getInt("respiration_rate");
-							respirationRate.setText(patientRR);								
+							patientHeartRate = patientInfo.getInt("heart_rate");
+							patientRR = patientInfo.getInt("respiration_rate");
+							heartRate.setText(String.valueOf(patientHeartRate));
+							respirationRate.setText(String.valueOf(patientRR));								
 						}
 		
 
@@ -209,9 +211,10 @@ private class dViewPrescriptions extends AsyncTask<String, Void,String>{
 		Bundle unBundler = getIntent().getExtras();
 		patientId = unBundler.getInt("PatientId");
 		userId = unBundler.getInt("UserId");
+
 		
 		
-		String viewPatient = "http://104.131.116.247/api/patient/?patient_id=" + patientId;
+		String viewPatient = "http://104.131.116.247/api/patient/?patient_id=" + patientId + "&method=get-patient";
 		new getPatientInfo().execute(viewPatient);
 		
 		//Need to allow doctor to add vitals, view notes, and write a prescription.
@@ -219,7 +222,7 @@ private class dViewPrescriptions extends AsyncTask<String, Void,String>{
 		viewNote.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View b) {
-				String viewPatientNotes = "http://104.131.116.247/api/note/?patient_id="+ patientId;
+				String viewPatientNotes = "http://104.131.116.247/api/note/?patient_id="+ patientId + "&method=get-note";
 				new dViewNotes().execute(viewPatientNotes);
 				
 			}
@@ -244,7 +247,7 @@ private class dViewPrescriptions extends AsyncTask<String, Void,String>{
 				
 			@Override
 				public void onClick(View v) {
-					Intent shiftToDoctorVitals = new Intent (v.getContext(), PatientVitalsFinal.class);
+					Intent shiftToDoctorVitals = new Intent (v.getContext(), NurseVitals.class);
 					Bundle pidBundle = new Bundle();
 					pidBundle.putInt("PatientId", patientId);
 					shiftToDoctorVitals.putExtras(pidBundle);
@@ -259,8 +262,10 @@ private class dViewPrescriptions extends AsyncTask<String, Void,String>{
 		public void onClick(View b) {
 			Intent shiftToAddNote = new Intent (b.getContext(), Add_note.class);
 			Bundle pidBundle = new Bundle();
-			pidBundle.putInt("PatientId", patientId);
 			pidBundle.putInt("UserID", userId);
+			pidBundle.putInt("PatientId", patientId);
+			Toast.makeText(PatientInfoFinal.this, 
+            	    "UserId: " + userId, Toast.LENGTH_SHORT).show();
 			shiftToAddNote.putExtras(pidBundle);
 			startActivity(shiftToAddNote);	
 			}
@@ -274,8 +279,7 @@ private class dViewPrescriptions extends AsyncTask<String, Void,String>{
 			Intent shiftToRxSubmission = new Intent (b.getContext(), PrescriptionSubmission.class);
 			Bundle pidBundle = new Bundle();
 			pidBundle.putInt("PatientId", patientId);
-			//According to prescription screen I also need to bundle user id. Sad times.
-			//pidBundle.putInt("UserID", ubUserID);
+			pidBundle.putInt("UserID", userId);
 			shiftToRxSubmission.putExtras(pidBundle);
 			startActivity(shiftToRxSubmission);	
 			}

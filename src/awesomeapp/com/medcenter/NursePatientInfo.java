@@ -115,9 +115,9 @@ public class NursePatientInfo extends Activity {
 							String fullPatientName = patientFirstName + " " + patientLastName;
 							patientName.setText(fullPatientName);
 							int patientHeartRate = patientInfo.getInt("heart_rate");
-							heartRate.setText(patientHeartRate);
+							heartRate.setText(String.valueOf(patientHeartRate));
 							int patientRR = patientInfo.getInt("respiration_rate");
-							respirationRate.setText(patientRR);								
+							respirationRate.setText(String.valueOf(patientRR));								
 					}
 	
 
@@ -208,7 +208,7 @@ public class NursePatientInfo extends Activity {
 		userId = unBundler.getInt("UserId");
 		
 		
-		String viewPatient = "http://104.131.116.247/api/patient/?patient_id=" + patientId;
+		String viewPatient = "http://104.131.116.247/api/patient/?patient_id=" + patientId + "&method=get-patient";
 		new nGetPatientInfo().execute(viewPatient);
 		
         
@@ -216,7 +216,7 @@ public class NursePatientInfo extends Activity {
 		viewNote.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View b) {
-				String viewPatientNotes = "http://104.131.116.247/api/note/?patient_id="+ patientId;
+				String viewPatientNotes = "http://104.131.116.247/api/note/?patient_id="+ patientId + "&method=get-note";
 				new nViewNotes().execute(viewPatientNotes);
 				
 			}

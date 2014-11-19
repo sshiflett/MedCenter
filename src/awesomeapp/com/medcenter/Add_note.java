@@ -36,98 +36,10 @@ import android.widget.Toast;
 
 public class Add_note extends Activity {
 	int patientId;
-	int userId;
 	String note;
+	//int userId;
+
 	
-	public String postData(String URL) {
-	    // Create a new HttpClient and Post Header
-		StringBuilder stringBuilder = new StringBuilder();
-	    HttpClient httpclient = new DefaultHttpClient();
-	    HttpPost httppost = new HttpPost(URL);
-
-	    try {
-	        // Add your data
-	        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-	        nameValuePairs.add(new BasicNameValuePair("patient_id", String.valueOf(patientId)));
-	        nameValuePairs.add(new BasicNameValuePair("author_id", String.valueOf(userId)));
-	        nameValuePairs.add(new BasicNameValuePair("title", "we dont use titles"));
-	        nameValuePairs.add(new BasicNameValuePair("note", note));
-	        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
-	        // Execute HTTP Post Request
-	        HttpResponse response = httpclient.execute(httppost);
-	        HttpEntity entity = response.getEntity();
-	        
-			InputStream content = entity.getContent();
-
-			BufferedReader reader = new BufferedReader(
-
-					new InputStreamReader(content));
-
-			String line;
-
-			while ((line = reader.readLine()) != null) {
-
-				stringBuilder.append(line);
-
-			}
-	        
-	    } catch (ClientProtocolException e) {
-	        // TODO Auto-generated catch block
-	    } catch (IOException e) {
-	        // TODO Auto-generated catch block
-	    }
-	    
-	    return stringBuilder.toString();
-	}
-	
-	private class createNote extends AsyncTask<String, Void,String>{
-	    @Override
-	    protected String doInBackground(String... urls){
-				return postData(urls[0]);
-	    	}
-	    protected void onPostExecute(String result){
-	    	try
-	    	{
-	    		
-	    		JSONObject noteObject = new JSONObject(result);
-	    		
-	    		int status = noteObject.getInt("status");
-	    		if(status == 202)
-	    		{
-	    			Toast.makeText(Add_note.this, 
-		               	    "Your note was created.", Toast.LENGTH_SHORT).show();
-	    		}
-	    		else if(status == 206)
-	    		{
-	    			Toast.makeText(Add_note.this, 
-		               	    "Partial Content.", Toast.LENGTH_SHORT).show();
-	    		}
-	    		/*
-	    		JSONObject loginObject = new JSONObject(result);
-	    		
-	            int status = loginObject.getInt("status");  
-	            // If authenticate status returns "forbidden", show error message using toast.
-	       	 	if(status == 403)
-	       	 	{
-	               	Toast.makeText(MainActivity.this, 
-	               	    "Your login was incorrect. Please try again.", Toast.LENGTH_SHORT).show();
-	            }
-	       	 	else if(status == 202)
-	       	 	{
-	       	 		JSONObject userObject = loginObject.getJSONObject("user");
-	       	 		int userId = userObject.getInt("id");
-	       	 		String userLookup = "http://104.131.116.247/api/user/?user_id="+userId;
-	       	 		patientId = userObject.getInt("patient_id");
-	       	 		new parseRole().execute(userLookup);	
-	       	 	}*/
-	    		
-	    	}catch(JSONException e){
-	    		e.printStackTrace();
-	    	}
-	    	
-	    }
-	}
 	public String readJSONFeed(String URL) {
 
 		StringBuilder stringBuilder = new StringBuilder();
@@ -180,7 +92,39 @@ public class Add_note extends Activity {
 
 		return stringBuilder.toString();
 
+}
+	
+	private class createNote extends AsyncTask<String, Void,String>{
+	    @Override
+	    protected String doInBackground(String... urls){
+				return readJSONFeed(urls[0]);
+	    	}
+	    protected void onPostExecute(String result){
+	    	try
+	    	{
+	    		
+	    		JSONObject noteObject = new JSONObject(result);
+	    		
+	    		int status = noteObject.getInt("status");
+	    		if(status == 202)
+	    		{
+	    			Toast.makeText(Add_note.this, 
+		               	    "Your note was created.", Toast.LENGTH_SHORT).show();
+	    		}
+	    		
+	    		else if(status == 404)
+	    		{
+	    			Toast.makeText(Add_note.this, 
+		               	    "Not found.", Toast.LENGTH_SHORT).show();
+	    		}
+	    		
+	    	}catch(JSONException e){
+	    		e.printStackTrace();
+	    	}
+	    	
+	    }
 	}
+	
 	private class getPatientName extends AsyncTask<String, Void,String>{
 	    @Override
 	    protected String doInBackground(String... urls){
@@ -219,13 +163,14 @@ public class Add_note extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_add_note);
-		final EditText noteEntered = (EditText) findViewById(R.id.editText1);
-		
 		Bundle unBundler = getIntent().getExtras();
 		patientId = unBundler.getInt("PatientId");
-		userId = unBundler.getInt("UserId");
-		String viewPatient = "http://104.131.116.247/api/patient/?patient_id=" + patientId;
+		final int userId = unBundler.getInt("UserID");
+		
+		String viewPatient = "http://104.131.116.247/api/patient/?patient_id=" + patientId + "&method=get-patient";
 		new getPatientName().execute(viewPatient);
+		final EditText noteEntered = (EditText) findViewById(R.id.editText1);
+	
 
 		
 
@@ -237,7 +182,9 @@ public class Add_note extends Activity {
 		@Override
 		public void onClick(View b) {
 			note = noteEntered.getText().toString();
-			new createNote().execute("http://104.131.116.247/api/note/");
+			String finalNote = note.replaceAll(" ", "%20");
+			String createThisNote = "http://104.131.116.247/api/note/?patient_id=" + patientId + "&author_id=" + userId +"&title=Thisisanexampletitle." +"&note=" + finalNote + "&method=create-note";
+			new createNote().execute(createThisNote);
 			
 			}
 			

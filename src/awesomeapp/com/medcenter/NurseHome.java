@@ -140,7 +140,7 @@ public class NurseHome extends Activity {
 			userId = unBundler.getInt("UserId");
 
 			
-			String patientSearch = "http://104.131.116.247/api/patient/?patient_id=" + patientId;
+			String patientSearch = "http://104.131.116.247/api/patient/?patient_id=" + patientId + "&method=get-patient";
 			new findPatient().execute(patientSearch);
 
 	

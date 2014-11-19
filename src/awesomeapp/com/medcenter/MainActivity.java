@@ -122,7 +122,7 @@ public class MainActivity extends Activity {
 	       	 	{
 	       	 		JSONObject userObject = loginObject.getJSONObject("user");
 	       	 		userId = userObject.getInt("id");
-	       	 		String userLookup = "http://104.131.116.247/api/user/?user_id="+userId;
+	       	 		String userLookup = "http://104.131.116.247/api/user/?user_id=" +  userId +"&method=get-user";
 	       	 		if(userId == 9 || userId == 10 || userId == 11)
 	       	 		{
 	       	 			patientId = userObject.getInt("patient_id");
@@ -165,6 +165,9 @@ public class MainActivity extends Activity {
 				}
 				else if(role_id == 3){
 					Intent shiftToPharm = new Intent (MainActivity.this, PharmacistMainFinal.class);
+					Bundle idBundle = new Bundle();
+					idBundle.putInt("UserId", userId);
+					shiftToPharm.putExtras(idBundle);
 					startActivity(shiftToPharm);
 				}
 				else if (role_id == 4){
@@ -241,9 +244,9 @@ public void onBackPressed() {
 		        		//Do nothing if unsuccesful so we dont crash our app!
 		        	}
 		        	
-		        	String httpRequest = "http://104.131.116.247/api/authenticate/?username=" + userName + "&password=" + passWord;
+		        	String httpRequest = "http://104.131.116.247/api/authenticate/?username=" + userName + "&password=" + passWord + "&method=authenticate-user";
 		        	new Authenticate().execute(httpRequest);
-		        	finish();
+		        	//finish();
 		        	
 				}
 			

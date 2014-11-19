@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 public class PharmacistMainFinal extends Activity {
 	public int patientId;
+	int userId;
 	public String readJSONFeed(String URL) {
 
 		StringBuilder stringBuilder = new StringBuilder();
@@ -89,8 +90,6 @@ public class PharmacistMainFinal extends Activity {
 				return readJSONFeed(urls[0]);
 	    	}
 	    protected void onPostExecute(String result){
-	    	try
-	    	{
 				try
 				{
 					JSONObject patient = new JSONObject(result);
@@ -106,6 +105,7 @@ public class PharmacistMainFinal extends Activity {
 						Intent shiftToRxSubmission = new Intent (getApplicationContext(), FillPrescript.class);
 						Bundle dataBundle = new Bundle();
 						dataBundle.putInt("PatientId", patientId);
+						dataBundle.putInt("UserId", userId);
 						shiftToRxSubmission.putExtras(dataBundle);
 						startActivity(shiftToRxSubmission);
 					}
@@ -114,9 +114,7 @@ public class PharmacistMainFinal extends Activity {
 				catch(JSONException e){
 					//oops
 				}
-	    	}catch(Exception e){
-	    		e.printStackTrace();
-	    	}
+	    	
 	    }
 	}
 
@@ -125,6 +123,8 @@ public class PharmacistMainFinal extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_pharmacist_main_final);
+		Bundle unBundler = getIntent().getExtras();
+		userId = unBundler.getInt("UserId");
 		
 		Button next = (Button) findViewById(R.id.b_ps_confirm);
 		next.setOnClickListener(new View.OnClickListener() {
@@ -140,7 +140,7 @@ public class PharmacistMainFinal extends Activity {
 					patientId = Integer.parseInt(nPatientFinder.getText().toString());
 
 					
-					String patientSearch = "104.131.116.247/api/patient/?patient_id=" + patientId;
+					String patientSearch = "http://104.131.116.247/api/patient/?patient_id=" + patientId +"&method=get-patient";
 					new findPatient().execute(patientSearch);
 
 			
@@ -151,7 +151,7 @@ public class PharmacistMainFinal extends Activity {
 			}
 		});
 		
-		Button logout = (Button) findViewById(R.id.b_ps_cancel);
+		Button logout = (Button) findViewById(R.id.b_dh_logout);
 		logout.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

@@ -1,20 +1,28 @@
 package awesomeapp.com.medcenter;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import zephyr.android.BioHarnessBT.BTClient;
 import zephyr.android.BioHarnessBT.ZephyrProtocol;
@@ -25,6 +33,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -39,6 +48,84 @@ import android.widget.Toast;
 
 
 public class NurseVitals extends Activity {
+	int patientId;
+	public String readJSONFeed(String URL) {
+
+		StringBuilder stringBuilder = new StringBuilder();
+
+		HttpClient client = new DefaultHttpClient();
+
+		HttpGet httpGet = new HttpGet(URL);
+
+		try {
+
+			HttpResponse response = client.execute(httpGet);
+
+			StatusLine statusLine = response.getStatusLine();
+
+			int statusCode = statusLine.getStatusCode();
+
+			if (statusCode == 200) {
+
+				HttpEntity entity = response.getEntity();
+
+				InputStream content = entity.getContent();
+
+				BufferedReader reader = new BufferedReader(
+
+				new InputStreamReader(content));
+
+				String line;
+
+				while ((line = reader.readLine()) != null) {
+
+					stringBuilder.append(line);
+
+				}
+
+			} else {
+
+				Log.e("JSON", "Failed to download file");
+
+			}
+
+		} catch (ClientProtocolException e) {
+
+			e.printStackTrace();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+
+		return stringBuilder.toString();
+
+	}
+	
+	private class recordVitals extends AsyncTask<String, Void,String>{
+	    @Override
+	    protected String doInBackground(String... urls){
+				return readJSONFeed(urls[0]);
+	    	}
+	    protected void onPostExecute(String result){
+			try
+				{
+					JSONObject vitalsInfo = new JSONObject(result);
+					int status = vitalsInfo.getInt("status");
+					if(status == 201){
+						Toast.makeText(NurseVitals.this, 
+			            	    "Vitals saved.", Toast.LENGTH_SHORT).show();
+					}
+					
+
+	
+				}
+				catch(JSONException e){
+					//oops
+				}
+	    	}
+	    }
 	
 	int respirationRateInt;
 	int heartRateInt;
@@ -58,6 +145,9 @@ public class NurseVitals extends Activity {
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.activity_nurse_vitals);
+			Bundle unBundler = getIntent().getExtras();
+			patientId = unBundler.getInt("PatientId");
+	        
 	        /*Sending a message to android that we are going to initiate a pairing request*/
 	        IntentFilter filter = new IntentFilter("android.bluetooth.device.action.PAIRING_REQUEST");
 	        /*Registering a new BTBroadcast receiver from the Main Activity context with pairing request event*/
@@ -135,6 +225,9 @@ public class NurseVitals extends Activity {
 	        			TextView respirationRateTV = (EditText)findViewById(R.id.et_respirationRate);
 	        			String respirationRate = heartRateTV.getText().toString();
 	        			respirationRateInt = Integer.parseInt(respirationRate);
+	        			
+	        			String recordVitals = "http://104.131.116.247/api/vitals/?patient_id=" + patientId + "&heart_rate=" + heartRateInt + "&breathing_rate=3&respiration_rate=" + respirationRateInt + "&method=edit-vitals";
+	        			new recordVitals().execute(recordVitals);
 	        			
 
 	        		}

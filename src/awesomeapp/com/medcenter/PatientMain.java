@@ -209,14 +209,14 @@ public class PatientMain extends Activity {
 		final int ubPatientId = unBundler.getInt("Patient_Id");
 		
 		
-		String viewPatient = "http://104.131.116.247/api/patient/?patient_id=" + ubPatientId;
+		String viewPatient = "http://104.131.116.247/api/patient/?patient_id=" + ubPatientId + "&method=get-patient";
 		new getPatientInfo().execute(viewPatient);
 		
 		Button viewNote = (Button) findViewById(R.id.b_pv_viewNote);
 		viewNote.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				String viewPatientNotes = "http://104.131.116.247/api/note/?patient_id="+ ubPatientId;
+				String viewPatientNotes = "http://104.131.116.247/api/note/?patient_id=" + ubPatientId + "&method=get-note";
 				new viewNotes().execute(viewPatientNotes);	
 			}
 		});
