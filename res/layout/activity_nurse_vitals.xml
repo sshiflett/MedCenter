@@ -98,4 +98,5 @@
         android:background="@drawable/corner"
         android:text="@string/stop" />
 
+
 </RelativeLayout>

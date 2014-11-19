@@ -163,6 +163,7 @@ public class PharmacistMainFinal extends Activity {
 			public void onClick(View v) {
 			Intent shiftToHomeScreen = new Intent (v.getContext(), MainActivity.class);
 			startActivity(shiftToHomeScreen);
+			finish();
 				
 			}
 		});

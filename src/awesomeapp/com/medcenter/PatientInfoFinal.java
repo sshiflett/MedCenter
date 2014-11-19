@@ -24,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -286,6 +287,19 @@ private class dViewPrescriptions extends AsyncTask<String, Void,String>{
 			}
 			
 		});
+		
+		 Button closeActivity= (Button) findViewById(R.id.b_ps_cancel);
+	        if (closeActivity != null)
+	        {
+	        	closeActivity.setOnClickListener(new OnClickListener() 
+	        	{
+	        		public void onClick(View v) {
+	        			finish();
+	        			
+
+	        		}
+	        	});
+	        }     
 
 	}
 }

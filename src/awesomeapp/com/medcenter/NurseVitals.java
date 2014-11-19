@@ -9,7 +9,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -23,7 +22,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import zephyr.android.BioHarnessBT.BTClient;
 import zephyr.android.BioHarnessBT.ZephyrProtocol;
 import android.app.Activity;
@@ -167,6 +165,8 @@ public class NurseVitals extends Activity {
 			Bundle unBundler = getIntent().getExtras();
 			patientId = unBundler.getInt("PatientId");
 			userId = unBundler.getInt("UserId");
+			String userLookup = "http://104.131.116.247/api/user/?user_id=" +  userId +"&method=get-user";
+			new parseRole().execute(userLookup);
 	        
 	        /*Sending a message to android that we are going to initiate a pairing request*/
 	        IntentFilter filter = new IntentFilter("android.bluetooth.device.action.PAIRING_REQUEST");
@@ -211,10 +211,10 @@ public class NurseVitals extends Activity {
 	        			_NConnListener = new NewConnectedListener(Newhandler,Newhandler);
 	        			_bt.addConnectedEventListener(_NConnListener);
 	        			
-	        			TextView tv1 = (EditText)findViewById(R.id.et_heartRate);
+	        			EditText tv1 = (EditText)findViewById(R.id.et_heartRate);
 	        			tv1.setText("000");
 	        			
-	        			TextView tv2 = (EditText)findViewById(R.id.et_respirationRate);
+	        			EditText tv2 = (EditText)findViewById(R.id.et_respirationRate);
 	        			tv2.setText("000");
 	        			
 	        			
@@ -224,8 +224,7 @@ public class NurseVitals extends Activity {
 							 //Reset all the values to 0s
 	        			}
 	        			else
-	        				Toast.makeText(getApplicationContext(), "Unable to Connect to Sensor", Toast.LENGTH_SHORT).show();
-	  
+	        				Toast.makeText(NurseVitals.this, "Unable to connect to sensor", Toast.LENGTH_SHORT).show();
 	        			
 	        		}
 	        	});
@@ -236,29 +235,41 @@ public class NurseVitals extends Activity {
 	        {
 	        	stopRecord.setOnClickListener(new OnClickListener() 
 	        	{
-	        		public void onClick(View v) {
+					public void onClick(View v) 
+	        		{
+						TextView heartRateTV = (EditText)findViewById(R.id.et_heartRate);
+	        			heartRateInt = Integer.parseInt(heartRateTV.getText().toString());
 	        			
-	        			EditText heartRateTV = (EditText)findViewById(R.id.et_heartRate);
-	        			String heartRate = heartRateTV.getText().toString();
-	        			heartRateInt = Integer.parseInt(heartRate);
-	        			
-	        			EditText respirationRateTV = (EditText)findViewById(R.id.et_respirationRate);
-	        			String respirationRate = respirationRateTV.getText().toString();
-	        			respirationRateInt = Integer.parseInt(respirationRate);
-	        			
+	        			TextView respirationRateTV = (EditText)findViewById(R.id.et_respirationRate);
+	        			respirationRateInt = Integer.parseInt(respirationRateTV.getText().toString());
+	        		
 	        			String recordVitals = "http://104.131.116.247/api/vitals/?patient_id=" + patientId + "&heart_rate=" + heartRateInt + "&breathing_rate=3&respiration_rate=" + respirationRateInt + "&method=edit-vitals";
 	        			new recordVitals().execute(recordVitals);
+	        			
+	        		}
+	        	});
+	        }
+	  
+	       
+	        Button closeActivity= (Button) findViewById(R.id.b_dh_logout);
+	        if (closeActivity != null)
+	        {
+	        	closeActivity.setOnClickListener(new OnClickListener() 
+	        	{
+	        		public void onClick(View v) {
+	        			finish();
 	        			
 
 	        		}
 	        	});
-	        }
+	        }     
 	        
+	  
 	       
-	        
-	    }
+	  }      
+	   
 	    
-	    private class BTBondReceiver extends BroadcastReceiver {
+		private class BTBondReceiver extends BroadcastReceiver {
 			@Override
 			public void onReceive(Context context, Intent intent) {
 				Bundle b = intent.getExtras();
