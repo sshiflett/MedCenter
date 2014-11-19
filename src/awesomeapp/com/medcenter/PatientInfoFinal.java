@@ -302,6 +302,11 @@ private class dViewPrescriptions extends AsyncTask<String, Void,String>{
 	        }     
 
 	}
+	
+	@Override
+	public void onBackPressed() {
+		
+	}
 }
 
 

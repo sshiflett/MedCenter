@@ -229,4 +229,10 @@ public class Add_note extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	@Override
+	public void onBackPressed() {
+		
+	}
 }
+

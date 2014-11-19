@@ -48,4 +48,9 @@ public class Nurse_Doctor extends Activity {
 			
 		});//end logout event handler
 	}
+	
+	@Override
+	public void onBackPressed() {
+		
+	}
 }

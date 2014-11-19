@@ -283,4 +283,9 @@ public class NursePatientInfo extends Activity {
 
 
 	}
+	
+	@Override
+	public void onBackPressed() {
+		
+	}
 }

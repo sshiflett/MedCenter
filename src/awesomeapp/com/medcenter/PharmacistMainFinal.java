@@ -168,4 +168,9 @@ public class PharmacistMainFinal extends Activity {
 			}
 		});
 	}
+	
+	@Override
+	public void onBackPressed() {
+		
+	}
 }

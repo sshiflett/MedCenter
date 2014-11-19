@@ -165,5 +165,10 @@ public class NurseHome extends Activity {
 			
 		});
 	}
+	
+	@Override
+	public void onBackPressed() {
+		
+	}
 }
 

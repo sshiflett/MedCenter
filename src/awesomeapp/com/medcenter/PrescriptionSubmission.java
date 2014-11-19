@@ -211,4 +211,9 @@ public class PrescriptionSubmission extends Activity {
 			
 		});
 	}
+	
+	@Override
+	public void onBackPressed() {
+		
+	}
 }

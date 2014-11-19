@@ -166,4 +166,9 @@ public class DoctorHome extends Activity {
 		});
 	
 	}
+	
+	@Override
+	public void onBackPressed() {
+		
+	}
 }

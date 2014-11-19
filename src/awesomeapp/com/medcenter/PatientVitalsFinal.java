@@ -27,4 +27,9 @@ public class PatientVitalsFinal extends Activity {
 			}
 		});
 	}
+	
+	@Override
+	public void onBackPressed() {
+		
+	}
 }

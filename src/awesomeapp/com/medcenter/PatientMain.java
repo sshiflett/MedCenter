@@ -247,4 +247,9 @@ public class PatientMain extends Activity {
 		
 		
 }
+	
+	@Override
+	public void onBackPressed() {
+		
+	}
 }

@@ -288,4 +288,9 @@ public class FillPrescript extends Activity {
 		});
 	
 	}
+	
+	@Override
+	public void onBackPressed() {
+		
+	}
 }

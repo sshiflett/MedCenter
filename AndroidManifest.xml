@@ -96,7 +96,8 @@
         </activity>
         <activity
             android:name=".AddPatient"
-            android:label="@string/title_activity_add_patient" >
+            android:label="@string/title_activity_add_patient"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 
