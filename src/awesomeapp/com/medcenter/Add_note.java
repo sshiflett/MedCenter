@@ -106,7 +106,7 @@ public class Add_note extends Activity {
 	    		JSONObject noteObject = new JSONObject(result);
 	    		
 	    		int status = noteObject.getInt("status");
-	    		if(status == 202)
+	    		if(status == 201)
 	    		{
 	    			Toast.makeText(Add_note.this, 
 		               	    "Your note was created.", Toast.LENGTH_SHORT).show();
@@ -182,9 +182,15 @@ public class Add_note extends Activity {
 		@Override
 		public void onClick(View b) {
 			note = noteEntered.getText().toString();
-			String finalNote = note.replaceAll(" ", "%20");
-			String createThisNote = "http://104.131.116.247/api/note/?patient_id=" + patientId + "&author_id=" + userId +"&title=Thisisanexampletitle." +"&note=" + finalNote + "&method=create-note";
-			new createNote().execute(createThisNote);
+			if (note.matches("")) {
+			    Toast.makeText(Add_note.this, "Blank note, try again.", Toast.LENGTH_SHORT).show();
+			    
+			}
+			else{
+				String finalNote = note.replaceAll(" ", "%20");
+				String createThisNote = "http://104.131.116.247/api/note/?patient_id=" + patientId + "&author_id=" + userId +"&title=Thisisanexampletitle." +"&note=" + finalNote + "&method=create-note";
+				new createNote().execute(createThisNote);
+			}
 			
 			}
 			

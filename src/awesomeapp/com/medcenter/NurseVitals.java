@@ -218,12 +218,12 @@ public class NurseVitals extends Activity {
 	        	{
 	        		public void onClick(View v) {
 	        			
-	        			TextView heartRateTV = (EditText)findViewById(R.id.et_heartRate);
+	        			EditText heartRateTV = (EditText)findViewById(R.id.et_heartRate);
 	        			String heartRate = heartRateTV.getText().toString();
 	        			heartRateInt = Integer.parseInt(heartRate);
 	        			
-	        			TextView respirationRateTV = (EditText)findViewById(R.id.et_respirationRate);
-	        			String respirationRate = heartRateTV.getText().toString();
+	        			EditText respirationRateTV = (EditText)findViewById(R.id.et_respirationRate);
+	        			String respirationRate = respirationRateTV.getText().toString();
 	        			respirationRateInt = Integer.parseInt(respirationRate);
 	        			
 	        			String recordVitals = "http://104.131.116.247/api/vitals/?patient_id=" + patientId + "&heart_rate=" + heartRateInt + "&breathing_rate=3&respiration_rate=" + respirationRateInt + "&method=edit-vitals";

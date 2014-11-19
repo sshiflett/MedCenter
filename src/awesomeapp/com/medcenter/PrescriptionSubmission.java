@@ -185,9 +185,14 @@ public class PrescriptionSubmission extends Activity {
 			public void onClick(View v) {
 				String rxName = prescription.getText().toString();
 				String count = amount.getText().toString();
-				
-			String prescribe = "http://104.131.116.247/api/prescription/?patient_id=" + patientId + "&name=" + rxName + "&count=" + count + "&filled=true" + "&ready=false" + "&method=create-prescription";
-			new writeRx().execute(prescribe);
+				if (rxName.matches("") || count.matches("")) {
+				    Toast.makeText(PrescriptionSubmission.this, "You did not enter a prescription name, or you did not enter count.", Toast.LENGTH_SHORT).show();
+				    
+				}
+				else{
+						String prescribe = "http://104.131.116.247/api/prescription/?patient_id=" + patientId + "&name=" + rxName + "&count=" + count + "&filled=true" + "&ready=false" + "&method=create-prescription";
+						new writeRx().execute(prescribe);
+				}
 			
 		}
 			

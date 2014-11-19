@@ -134,12 +134,20 @@ public class DoctorHome extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-			patientId = Integer.parseInt(patientFinder.getText().toString());
-			Bundle unBundler = getIntent().getExtras();
-			userId = unBundler.getInt("UserId");
+			String stringPid = patientFinder.getText().toString();
+			if (stringPid.matches("")) {
+			    Toast.makeText(DoctorHome.this, "You did not enter a patient id, try again.", Toast.LENGTH_SHORT).show();
+			    
+			}
+			else{
+				patientId = Integer.parseInt(stringPid);
+				Bundle unBundler = getIntent().getExtras();
+				userId = unBundler.getInt("UserId");
+
 			
-			String patientSearch = "http://104.131.116.247/api/patient/?patient_id=" + patientId + "&method=get-patient";
-			new foundPatient().execute(patientSearch);
+				String patientSearch = "http://104.131.116.247/api/patient/?patient_id=" + patientId + "&method=get-patient";
+				new foundPatient().execute(patientSearch);
+			}
 
 		}
 			

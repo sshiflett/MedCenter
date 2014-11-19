@@ -137,11 +137,16 @@ public class PharmacistMainFinal extends Activity {
 				next.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
-					patientId = Integer.parseInt(nPatientFinder.getText().toString());
-
-					
-					String patientSearch = "http://104.131.116.247/api/patient/?patient_id=" + patientId +"&method=get-patient";
-					new findPatient().execute(patientSearch);
+						String stringPid = nPatientFinder.getText().toString();
+						if (stringPid.matches("")) {
+						    Toast.makeText(PharmacistMainFinal.this, "You did not enter a patient id, try again.", Toast.LENGTH_SHORT).show();
+						    
+						}
+						else{
+							patientId = Integer.parseInt(stringPid);
+							String patientSearch = "http://104.131.116.247/api/patient/?patient_id=" + patientId +"&method=get-patient";
+							new findPatient().execute(patientSearch);
+						}
 
 			
 				}

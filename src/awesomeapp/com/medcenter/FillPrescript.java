@@ -260,9 +260,17 @@ public class FillPrescript extends Activity {
 	    reject.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				int rejectedRx = Integer.parseInt(rejectedId.getText().toString());
-				String rejected = "http://104.131.116.247/api/prescription/?prescription_id=" + rejectedRx + "&ready=true&filled=false&method=edit-prescription";
-				new rejectPrescription().execute(rejected);
+				
+				String rxRejectedId = rejectedId.getText().toString();
+				if (rxRejectedId.matches("")) {
+				    Toast.makeText(FillPrescript.this, "You did not enter a prescription id, try again.", Toast.LENGTH_SHORT).show();
+				    
+				}
+				else{
+					int rejectedRx = Integer.parseInt(rxRejectedId);
+					String rejected = "http://104.131.116.247/api/prescription/?prescription_id=" + rejectedRx + "&ready=true&filled=false&method=edit-prescription";
+					new rejectPrescription().execute(rejected);
+				}
 					
 			}
 		});
