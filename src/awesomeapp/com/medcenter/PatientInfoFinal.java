@@ -250,6 +250,7 @@ private class dViewPrescriptions extends AsyncTask<String, Void,String>{
 					Intent shiftToDoctorVitals = new Intent (v.getContext(), NurseVitals.class);
 					Bundle pidBundle = new Bundle();
 					pidBundle.putInt("PatientId", patientId);
+					pidBundle.putInt("UserId", userId);
 					shiftToDoctorVitals.putExtras(pidBundle);
 					startActivity(shiftToDoctorVitals);
 					}

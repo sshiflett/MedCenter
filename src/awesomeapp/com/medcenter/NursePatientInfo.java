@@ -244,6 +244,7 @@ public class NursePatientInfo extends Activity {
 					Intent shiftToNurseVitals = new Intent (v.getContext(), NurseVitals.class);
 					Bundle pidBundle = new Bundle();
 					pidBundle.putInt("PatientId", patientId);
+					pidBundle.putInt("UserId", userId);
 					shiftToNurseVitals.putExtras(pidBundle);
 					startActivity(shiftToNurseVitals);
 					}

@@ -49,6 +49,8 @@ import android.widget.Toast;
 
 public class NurseVitals extends Activity {
 	int patientId;
+	int userId;
+	int role;
 	public String readJSONFeed(String URL) {
 
 		StringBuilder stringBuilder = new StringBuilder();
@@ -102,6 +104,23 @@ public class NurseVitals extends Activity {
 		return stringBuilder.toString();
 
 	}
+	private class parseRole extends AsyncTask<String, Void,String>{
+	    @Override
+	    protected String doInBackground(String... urls){
+				return readJSONFeed(urls[0]);
+	    	}
+	    protected void onPostExecute(String httpResponse){
+	    	try
+	    	{
+	    		JSONObject user = new JSONObject(httpResponse);
+          		JSONObject userInfo = user.getJSONObject("user");
+     			role = userInfo.getInt("role");
+		
+	    	}catch(JSONException e){
+	    		e.printStackTrace();
+	    	}
+	    }
+}
 	
 	private class recordVitals extends AsyncTask<String, Void,String>{
 	    @Override
@@ -147,6 +166,7 @@ public class NurseVitals extends Activity {
 	        setContentView(R.layout.activity_nurse_vitals);
 			Bundle unBundler = getIntent().getExtras();
 			patientId = unBundler.getInt("PatientId");
+			userId = unBundler.getInt("UserId");
 	        
 	        /*Sending a message to android that we are going to initiate a pairing request*/
 	        IntentFilter filter = new IntentFilter("android.bluetooth.device.action.PAIRING_REQUEST");
