@@ -114,9 +114,9 @@ public class PatientMain extends Activity {
 							String fullPatientName = patientFirstName + " " + patientLastName;
 							patientName.setText(fullPatientName);
 							int patientHeartRate = patientInfo.getInt("heart_rate");
-							heartRate.setText(patientHeartRate);
+							heartRate.setText(String.valueOf(patientHeartRate));
 							int patientRR = patientInfo.getInt("respiration_rate");
-							rr.setText(patientRR);								
+							rr.setText(String.valueOf(patientRR));								
 					}
 	
 
