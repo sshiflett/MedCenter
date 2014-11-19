@@ -46,6 +46,7 @@ import org.json.JSONObject;
 
 public class MainActivity extends Activity {
 	int patientId;
+	int userId;
 	public String readJSONFeed(String URL) {
 
 		StringBuilder stringBuilder = new StringBuilder();
@@ -120,9 +121,13 @@ public class MainActivity extends Activity {
 	       	 	else if(status == 202)
 	       	 	{
 	       	 		JSONObject userObject = loginObject.getJSONObject("user");
-	       	 		int userId = userObject.getInt("id");
+	       	 		userId = userObject.getInt("id");
 	       	 		String userLookup = "http://104.131.116.247/api/user/?user_id="+userId;
-	       	 		patientId = userObject.getInt("patient_id");
+	       	 		if(userId == 9 || userId == 10 || userId == 11)
+	       	 		{
+	       	 			patientId = userObject.getInt("patient_id");
+	       	 		}
+	       	 
 	       	 		new parseRole().execute(userLookup);	
 	       	 	}
 	    		
@@ -146,10 +151,16 @@ public class MainActivity extends Activity {
 
 				if(role_id == 1){
 					Intent shiftToDoctorHome = new Intent (MainActivity.this, DoctorHome.class);
+					Bundle idBundle = new Bundle();
+					idBundle.putInt("UserId", userId);
+					shiftToDoctorHome.putExtras(idBundle);
 					startActivity(shiftToDoctorHome);
 				}	
 				else if(role_id == 2){
 					Intent shiftToNurseHome = new Intent (MainActivity.this, NurseHome.class);
+					Bundle idBundle = new Bundle();
+					idBundle.putInt("UserId", userId);
+					shiftToNurseHome.putExtras(idBundle);
 					startActivity(shiftToNurseHome);
 				}
 				else if(role_id == 3){

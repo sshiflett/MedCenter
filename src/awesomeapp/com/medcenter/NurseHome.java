@@ -30,7 +30,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class NurseHome extends Activity {
-	public int patientId;
+	int patientId;
+	int userId;
 	public String readJSONFeed(String URL) {
 
 		StringBuilder stringBuilder = new StringBuilder();
@@ -92,8 +93,6 @@ public class NurseHome extends Activity {
 	    protected void onPostExecute(String result){
 	    	try
 	    	{
-				try
-				{
 					JSONObject patient = new JSONObject(result);
 					int status = patient.getInt("status");
 					if(status == 404)
@@ -107,6 +106,7 @@ public class NurseHome extends Activity {
 						Intent shiftToPatientInfo = new Intent (getApplicationContext(), NursePatientInfo.class);
 						Bundle dataBundle = new Bundle();
 						dataBundle.putInt("PatientId", patientId);
+						dataBundle.putInt("UserId", userId);
 						shiftToPatientInfo.putExtras(dataBundle);
 						startActivity(shiftToPatientInfo);
 					}
@@ -115,9 +115,6 @@ public class NurseHome extends Activity {
 				catch(JSONException e){
 					//oops
 				}
-	    	}catch(Exception e){
-	    		e.printStackTrace();
-	    	}
 	    }
 	}
 
@@ -139,9 +136,11 @@ public class NurseHome extends Activity {
 			@Override
 			public void onClick(View v) {
 			patientId = Integer.parseInt(nPatientFinder.getText().toString());
+			Bundle unBundler = getIntent().getExtras();
+			userId = unBundler.getInt("UserId");
 
 			
-			String patientSearch = "104.131.116.247/api/patient/?patient_id=" + patientId;
+			String patientSearch = "http://104.131.116.247/api/patient/?patient_id=" + patientId;
 			new findPatient().execute(patientSearch);
 
 	

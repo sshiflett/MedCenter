@@ -30,6 +30,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class NursePatientInfo extends Activity {
+	int patientId;
+	int userId;
 	public String readJSONFeed(String URL) {
 
 		StringBuilder stringBuilder = new StringBuilder();
@@ -94,8 +96,7 @@ public class NursePatientInfo extends Activity {
 		        	JSONObject patientObject = new JSONObject(result);
 		        	int status = patientObject.getInt("status");
 		    		final TextView heartRate = (TextView) findViewById(R.id.selected_patient_heart_rate);
-		    		final TextView breathingRate = (TextView) findViewById(R.id.selected_patient_heartrate);
-		    		final TextView rr = (TextView) findViewById(R.id.selected_patient_rr);
+		    		final TextView respirationRate = (TextView) findViewById(R.id.selected_patient_heartrate);
 		    		final TextView patientName = (TextView) findViewById(R.id.tv_patientName);
 		        
 					if(status == 404)
@@ -108,16 +109,15 @@ public class NursePatientInfo extends Activity {
 					else if(status == 302)
 					{
 							// Set textfields to patient info from patientObject.
-							String patientFirstName = patientObject.getString("first_name");
-							String patientLastName = patientObject.getString("first_name");
+							JSONObject patientInfo = patientObject.getJSONObject("user");
+							String patientFirstName = patientInfo.getString("first_name");
+							String patientLastName = patientInfo.getString("last_name");
 							String fullPatientName = patientFirstName + " " + patientLastName;
 							patientName.setText(fullPatientName);
-							int patientHeartRate = patientObject.getInt("heart_rate");
+							int patientHeartRate = patientInfo.getInt("heart_rate");
 							heartRate.setText(patientHeartRate);
-							int patientBreathingRate = patientObject.getInt("breathing_rate");
-							breathingRate.setText(patientBreathingRate);
-							int patientRR = patientObject.getInt("respiration_rate");
-							rr.setText(patientRR);								
+							int patientRR = patientInfo.getInt("respiration_rate");
+							respirationRate.setText(patientRR);								
 					}
 	
 
@@ -179,7 +179,7 @@ public class NursePatientInfo extends Activity {
 	    					for (int i = 0; i < rxFeed.length(); i++) {
 	    						JSONObject prescription = rxFeed.getJSONObject(i);
 	    						boolean filled = prescription.getBoolean("filled");
-	    						if(filled = true){
+	    						if(filled == true){
 	    							Toast.makeText(getBaseContext(),"Prescription: " + prescription.getString("name") + " " +
 	    						" - Count: " + prescription.getInt("count"),
 	 
@@ -204,18 +204,19 @@ public class NursePatientInfo extends Activity {
 	
 		//Need to unbundle the patient id, set it to following variable and use it for database lookup.
 		Bundle unBundler = getIntent().getExtras();
-		final int ubPatientId = unBundler.getInt("PatientId");
+		patientId = unBundler.getInt("PatientId");
+		userId = unBundler.getInt("UserId");
 		
 		
-		String viewPatient = "http://104.131.116.247/api/patient/?patient_id=" + ubPatientId;
+		String viewPatient = "http://104.131.116.247/api/patient/?patient_id=" + patientId;
 		new nGetPatientInfo().execute(viewPatient);
 		
         
-		Button viewNote = (Button) findViewById(R.id.b_pv_viewNote);
+		Button viewNote = (Button) findViewById(R.id.b_viewNote);
 		viewNote.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View b) {
-				String viewPatientNotes = "http://104.131.116.247/api/note/?patient_id="+ ubPatientId;
+				String viewPatientNotes = "http://104.131.116.247/api/note/?patient_id="+ patientId;
 				new nViewNotes().execute(viewPatientNotes);
 				
 			}
@@ -242,7 +243,7 @@ public class NursePatientInfo extends Activity {
 				public void onClick(View v) {
 					Intent shiftToNurseVitals = new Intent (v.getContext(), NurseVitals.class);
 					Bundle pidBundle = new Bundle();
-					pidBundle.putInt("PatientId", ubPatientId);
+					pidBundle.putInt("PatientId", patientId);
 					shiftToNurseVitals.putExtras(pidBundle);
 					startActivity(shiftToNurseVitals);
 					}
@@ -255,8 +256,8 @@ public class NursePatientInfo extends Activity {
 		public void onClick(View b) {
 			Intent shiftToAddNote = new Intent (b.getContext(), Add_note.class);
 			Bundle pidBundle = new Bundle();
-			pidBundle.putInt("PatientId", ubPatientId);
-			//pidBundle.putInt("UserID", ubUserID);
+			pidBundle.putInt("PatientId", patientId);
+			pidBundle.putInt("UserID", userId);
 			shiftToAddNote.putExtras(pidBundle);
 			startActivity(shiftToAddNote);	
 			}

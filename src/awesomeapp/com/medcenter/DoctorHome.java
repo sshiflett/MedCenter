@@ -32,7 +32,8 @@ import android.widget.Toast;
 
 
 public class DoctorHome extends Activity {
-	public int patientId;
+	int patientId;
+	int userId;
 	public String readJSONFeed(String URL) {
 
 		StringBuilder stringBuilder = new StringBuilder();
@@ -92,8 +93,6 @@ public class DoctorHome extends Activity {
 				return readJSONFeed(urls[0]);
 	    	}
 	    protected void onPostExecute(String result){
-	    	try
-	    	{
 				try
 				{
 					JSONObject patient = new JSONObject(result);
@@ -109,6 +108,7 @@ public class DoctorHome extends Activity {
 						Intent shiftToPatientInfo = new Intent (getApplicationContext(), PatientInfoFinal.class);
 						Bundle dataBundle = new Bundle();
 						dataBundle.putInt("PatientId", patientId);
+						dataBundle.putInt("UserId", userId);
 						shiftToPatientInfo.putExtras(dataBundle);
 						startActivity(shiftToPatientInfo);
 					}
@@ -117,9 +117,6 @@ public class DoctorHome extends Activity {
 				catch(JSONException e){
 					//oops
 				}
-	    	}catch(Exception e){
-	    		e.printStackTrace();
-	    	}
 	    }
 	}
 
@@ -131,18 +128,17 @@ public class DoctorHome extends Activity {
 		
 		//Edit text Search Bar initialization
 		final EditText patientFinder = (EditText) findViewById(R.id.et_input1);
-		//TextView initialization
-		final TextView patient_name3 = (TextView) findViewById(R.id.patient_name3);
 		//Search button 
 		Button searchPatient = (Button) findViewById(R.id.b_ps_confirm);
 		searchPatient.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-			int patientId = Integer.parseInt(patientFinder.getText().toString());
-
+			patientId = Integer.parseInt(patientFinder.getText().toString());
+			Bundle unBundler = getIntent().getExtras();
+			userId = unBundler.getInt("UserId");
 			
-			String patientSearch = "104.131.116.247/api/patient/?patient_id=" + patientId;
+			String patientSearch = "http://104.131.116.247/api/patient/?patient_id=" + patientId;
 			new foundPatient().execute(patientSearch);
 
 		}
