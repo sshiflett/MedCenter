@@ -94,6 +94,10 @@
             android:label="@string/title_activity_add_note"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".AddPatient"
+            android:label="@string/title_activity_add_patient" >
+        </activity>
     </application>
 
 </manifest>
