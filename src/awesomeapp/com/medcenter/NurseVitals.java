@@ -241,7 +241,8 @@ public class NurseVitals extends Activity {
 	        			heartRateInt = Integer.parseInt(heartRateTV.getText().toString());
 	        			
 	        			TextView respirationRateTV = (EditText)findViewById(R.id.et_respirationRate);
-	        			respirationRateInt = Integer.parseInt(respirationRateTV.getText().toString());
+	        			Double respRate= Double.parseDouble(respirationRateTV.getText().toString());
+	        			respirationRateInt = respRate.intValue();
 	        		
 	        			String recordVitals = "http://104.131.116.247/api/vitals/?patient_id=" + patientId + "&heart_rate=" + heartRateInt + "&breathing_rate=3&respiration_rate=" + respirationRateInt + "&method=edit-vitals";
 	        			new recordVitals().execute(recordVitals);

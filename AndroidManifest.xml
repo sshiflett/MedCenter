@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="awesomeapp.com.medcenter"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0" 
+    android:label="MedCenter">
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -16,8 +17,8 @@
 
     <application
         android:allowBackup="true"
+        android:label="MedCenter"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
         android:theme="@style/Theme.NoTitleBar.WithColoredSpinners" >
         <activity
             android:name=".MainActivity"
