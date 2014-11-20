@@ -204,9 +204,14 @@ public class PrescriptionSubmission extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-			Intent shiftToPatientInfo = new Intent (v.getContext(), PatientInfoFinal.class);
-			startActivityForResult(shiftToPatientInfo, 0);
-			finish();
+    			Intent shiftToDoctorInfo = new Intent (v.getContext(), PatientInfoFinal.class);
+    			Bundle pidBundle = new Bundle();
+    			pidBundle.putInt("PatientId", patientId);
+    			pidBundle.putInt("UserId", userId);
+    			Toast.makeText(PrescriptionSubmission.this, "userId: " + userId + "patiedId: " +patientId, Toast.LENGTH_SHORT).show();
+    			shiftToDoctorInfo.putExtras(pidBundle);
+    			shiftToDoctorInfo.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    			startActivity(shiftToDoctorInfo);
 		}
 			
 		});

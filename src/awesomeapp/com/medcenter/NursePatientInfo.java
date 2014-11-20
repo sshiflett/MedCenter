@@ -258,7 +258,7 @@ public class NursePatientInfo extends Activity {
 			Intent shiftToAddNote = new Intent (b.getContext(), Add_note.class);
 			Bundle pidBundle = new Bundle();
 			pidBundle.putInt("PatientId", patientId);
-			pidBundle.putInt("UserID", userId);
+			pidBundle.putInt("UserId", userId);
 			shiftToAddNote.putExtras(pidBundle);
 			startActivity(shiftToAddNote);	
 			}
@@ -272,9 +272,14 @@ public class NursePatientInfo extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-			Intent shiftToNurseHome = new Intent (v.getContext(), NurseHome.class);
-			startActivity(shiftToNurseHome);
-			finish();
+				Intent shiftToNurseHome = new Intent (v.getContext(), NurseHome.class);
+    			Bundle pidBundle = new Bundle();
+    			pidBundle.putInt("PatientId", patientId);
+    			pidBundle.putInt("UserId", userId);
+    			Toast.makeText(NursePatientInfo.this, "userId: " + userId + "patiedId: " +patientId, Toast.LENGTH_SHORT).show();
+    			shiftToNurseHome.putExtras(pidBundle);
+    			shiftToNurseHome.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    			startActivity(shiftToNurseHome);
 			}
 			
 		});

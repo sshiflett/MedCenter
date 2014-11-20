@@ -240,7 +240,6 @@ public class FillPrescript extends Activity {
 		
 		//INITIALIZE BUTTONS (to names as they appear in the screen)
 
-		Button cancel = (Button) findViewById(R.id.b_cancel);
 		//TEXT VIEWS (To names that correspond to their labels)
 		
 
@@ -276,12 +275,13 @@ public class FillPrescript extends Activity {
 		});
 		
 	    //CANCEL HANDLER
+	    Button cancel = (Button) findViewById(R.id.b_cancel);
 		cancel.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-			Intent shiftToPharmHome = new Intent (v.getContext(), PharmacistMainFinal.class);
-			startActivity(shiftToPharmHome);
+			//Intent shiftToPharmHome = new Intent (v.getContext(), PharmacistMainFinal.class);
+			//startActivity(shiftToPharmHome);
 			finish();
 				
 			}

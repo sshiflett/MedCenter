@@ -238,8 +238,8 @@ public class PatientMain extends Activity {
 		cancel.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-			Intent shiftToHomeScreen = new Intent (v.getContext(), MainActivity.class);
-			startActivity(shiftToHomeScreen);
+			//Intent shiftToHomeScreen = new Intent (v.getContext(), MainActivity.class);
+			//startActivity(shiftToHomeScreen);
 			finish();
 			}
 			

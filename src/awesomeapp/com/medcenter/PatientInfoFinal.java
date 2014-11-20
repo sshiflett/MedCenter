@@ -264,10 +264,8 @@ private class dViewPrescriptions extends AsyncTask<String, Void,String>{
 		public void onClick(View b) {
 			Intent shiftToAddNote = new Intent (b.getContext(), Add_note.class);
 			Bundle pidBundle = new Bundle();
-			pidBundle.putInt("UserID", userId);
+			pidBundle.putInt("UserId", userId);
 			pidBundle.putInt("PatientId", patientId);
-			Toast.makeText(PatientInfoFinal.this, 
-            	    "UserId: " + userId, Toast.LENGTH_SHORT).show();
 			shiftToAddNote.putExtras(pidBundle);
 			startActivity(shiftToAddNote);	
 			}
@@ -281,7 +279,7 @@ private class dViewPrescriptions extends AsyncTask<String, Void,String>{
 			Intent shiftToRxSubmission = new Intent (b.getContext(), PrescriptionSubmission.class);
 			Bundle pidBundle = new Bundle();
 			pidBundle.putInt("PatientId", patientId);
-			pidBundle.putInt("UserID", userId);
+			pidBundle.putInt("UserId", userId);
 			shiftToRxSubmission.putExtras(pidBundle);
 			startActivity(shiftToRxSubmission);	
 			}
@@ -294,7 +292,14 @@ private class dViewPrescriptions extends AsyncTask<String, Void,String>{
 	        	closeActivity.setOnClickListener(new OnClickListener() 
 	        	{
 	        		public void onClick(View v) {
-	        			finish();
+	        			Intent shiftToDoctorHome = new Intent (v.getContext(), DoctorHome.class);
+	        			Bundle pidBundle = new Bundle();
+	        			pidBundle.putInt("PatientId", patientId);
+	        			pidBundle.putInt("UserId", userId);
+	        			Toast.makeText(PatientInfoFinal.this, "userId: " + userId + "patiedId: " +patientId, Toast.LENGTH_SHORT).show();
+	        			shiftToDoctorHome.putExtras(pidBundle);
+	        			shiftToDoctorHome.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	        			startActivity(shiftToDoctorHome);
 	        			
 
 	        		}

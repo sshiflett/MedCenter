@@ -153,13 +153,24 @@ public class NurseHome extends Activity {
 			
 		});
 		
+		Button newPatient = (Button) findViewById(R.id.button1);
+		newPatient.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+			Intent shiftToNewPatient = new Intent (v.getContext(), AddPatient.class);
+			startActivity(shiftToNewPatient);
+			finish();
+			}
+			
+		});
+		
 		//Logout event handler
 		logout.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-			Intent shiftToHomeScreen = new Intent (v.getContext(), MainActivity.class);
-			startActivity(shiftToHomeScreen);
+			//Intent shiftToHomeScreen = new Intent (v.getContext(), MainActivity.class);
+			//startActivity(shiftToHomeScreen);
 			finish();
 			}
 			

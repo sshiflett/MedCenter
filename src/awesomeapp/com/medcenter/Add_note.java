@@ -38,7 +38,8 @@ import android.widget.Toast;
 public class Add_note extends Activity {
 	int patientId;
 	String note;
-	//int userId;
+	int userId;
+	int role;
 
 	
 	public String readJSONFeed(String URL) {
@@ -93,6 +94,23 @@ public class Add_note extends Activity {
 
 		return stringBuilder.toString();
 
+}
+	private class parseRole extends AsyncTask<String, Void,String>{
+	    @Override
+	    protected String doInBackground(String... urls){
+				return readJSONFeed(urls[0]);
+	    	}
+	    protected void onPostExecute(String httpResponse){
+	    	try
+	    	{
+	    		JSONObject user = new JSONObject(httpResponse);
+          		JSONObject userInfo = user.getJSONObject("user");
+     			role = userInfo.getInt("role");
+		
+	    	}catch(JSONException e){
+	    		e.printStackTrace();
+	    	}
+	    }
 }
 	
 	private class createNote extends AsyncTask<String, Void,String>{
@@ -166,7 +184,10 @@ public class Add_note extends Activity {
 		setContentView(R.layout.activity_add_note);
 		Bundle unBundler = getIntent().getExtras();
 		patientId = unBundler.getInt("PatientId");
-		final int userId = unBundler.getInt("UserID");
+		userId = unBundler.getInt("UserId");
+		String userLookup = "http://104.131.116.247/api/user/?user_id=" +  userId +"&method=get-user";
+		new parseRole().execute(userLookup);
+		
 		
 		String viewPatient = "http://104.131.116.247/api/patient/?patient_id=" + patientId + "&method=get-patient";
 		new getPatientName().execute(viewPatient);
@@ -203,7 +224,30 @@ public class Add_note extends Activity {
 	        	closeActivity.setOnClickListener(new OnClickListener() 
 	        	{
 	        		public void onClick(View v) {
-	        			finish();
+	        			if(role == 1){
+	        			Intent shiftToDoctorInfo = new Intent (v.getContext(), PatientInfoFinal.class);
+	        			Bundle pidBundle = new Bundle();
+	        			pidBundle.putInt("PatientId", patientId);
+	        			pidBundle.putInt("UserId", userId);
+	        			Toast.makeText(Add_note.this, "userId: " + userId + "patiedId: " +patientId, Toast.LENGTH_SHORT).show();
+	        			shiftToDoctorInfo.putExtras(pidBundle);
+	        			shiftToDoctorInfo.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	        			startActivity(shiftToDoctorInfo);
+	        			}
+	        			else if(role == 2){
+	        			Intent shiftToNurseInfo = new Intent (v.getContext(), NursePatientInfo.class);
+	        			Bundle pidBundle = new Bundle();
+	        			pidBundle.putInt("PatientId", patientId);
+	        			pidBundle.putInt("UserId", userId);
+	        			Toast.makeText(Add_note.this, "userId: " + userId + "patiedId: " +patientId, Toast.LENGTH_SHORT).show();
+	        			shiftToNurseInfo.putExtras(pidBundle);
+	        			shiftToNurseInfo.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	        			startActivity(shiftToNurseInfo);
+	        			}
+	        			else
+	        			{
+	        				finish();
+	        			}
 	        			
 
 	        		}

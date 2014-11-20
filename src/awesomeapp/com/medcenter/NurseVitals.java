@@ -257,7 +257,30 @@ public class NurseVitals extends Activity {
 	        	closeActivity.setOnClickListener(new OnClickListener() 
 	        	{
 	        		public void onClick(View v) {
-	        			finish();
+	        			if(role == 1){
+	        			Intent shiftToDoctorInfo = new Intent (v.getContext(), PatientInfoFinal.class);
+	        			Bundle pidBundle = new Bundle();
+	        			pidBundle.putInt("PatientId", patientId);
+	        			pidBundle.putInt("UserId", userId);
+	        			Toast.makeText(NurseVitals.this, "userId: " + userId + "patiedId: " +patientId, Toast.LENGTH_SHORT).show();
+	        			shiftToDoctorInfo.putExtras(pidBundle);
+	        			shiftToDoctorInfo.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	        			startActivity(shiftToDoctorInfo);
+	        			}
+	        			else if(role == 2){
+	        			Intent shiftToNurseInfo = new Intent (v.getContext(), NursePatientInfo.class);
+	        			Bundle pidBundle = new Bundle();
+	        			pidBundle.putInt("PatientId", patientId);
+	        			pidBundle.putInt("UserId", userId);
+	        			shiftToNurseInfo.putExtras(pidBundle);
+	        			shiftToNurseInfo.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	        			startActivity(shiftToNurseInfo);
+	        			}
+	        			else
+	        			{
+	        				finish();
+	        			}
+	        			
 	        			
 
 	        		}

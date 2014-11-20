@@ -50,4 +50,15 @@
         android:background="@drawable/corner"
         android:text="@string/search" />
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/b_ps_confirm"
+        android:layout_alignRight="@+id/b_ps_confirm"
+        android:layout_below="@+id/b_ps_confirm"
+        android:layout_marginTop="20dp"
+        android:text="Create New Patient"
+        android:background="@drawable/corner" />
+
 </RelativeLayout>

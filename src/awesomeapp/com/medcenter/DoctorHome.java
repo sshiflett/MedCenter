@@ -158,8 +158,8 @@ public class DoctorHome extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-			Intent shiftToPatientInfo = new Intent (v.getContext(), MainActivity.class);
-			startActivity(shiftToPatientInfo);
+			//Intent shiftToPatientInfo = new Intent (v.getContext(), MainActivity.class);
+			//startActivity(shiftToPatientInfo);
 			finish();
 		}
 			
