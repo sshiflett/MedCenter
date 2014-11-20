@@ -229,7 +229,6 @@ public class Add_note extends Activity {
 	        			Bundle pidBundle = new Bundle();
 	        			pidBundle.putInt("PatientId", patientId);
 	        			pidBundle.putInt("UserId", userId);
-	        			Toast.makeText(Add_note.this, "userId: " + userId + "patiedId: " +patientId, Toast.LENGTH_SHORT).show();
 	        			shiftToDoctorInfo.putExtras(pidBundle);
 	        			shiftToDoctorInfo.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	        			startActivity(shiftToDoctorInfo);
@@ -239,7 +238,6 @@ public class Add_note extends Activity {
 	        			Bundle pidBundle = new Bundle();
 	        			pidBundle.putInt("PatientId", patientId);
 	        			pidBundle.putInt("UserId", userId);
-	        			Toast.makeText(Add_note.this, "userId: " + userId + "patiedId: " +patientId, Toast.LENGTH_SHORT).show();
 	        			shiftToNurseInfo.putExtras(pidBundle);
 	        			shiftToNurseInfo.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	        			startActivity(shiftToNurseInfo);

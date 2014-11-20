@@ -276,7 +276,6 @@ public class NursePatientInfo extends Activity {
     			Bundle pidBundle = new Bundle();
     			pidBundle.putInt("PatientId", patientId);
     			pidBundle.putInt("UserId", userId);
-    			Toast.makeText(NursePatientInfo.this, "userId: " + userId + "patiedId: " +patientId, Toast.LENGTH_SHORT).show();
     			shiftToNurseHome.putExtras(pidBundle);
     			shiftToNurseHome.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     			startActivity(shiftToNurseHome);

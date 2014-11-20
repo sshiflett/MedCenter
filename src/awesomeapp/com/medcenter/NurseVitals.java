@@ -262,7 +262,6 @@ public class NurseVitals extends Activity {
 	        			Bundle pidBundle = new Bundle();
 	        			pidBundle.putInt("PatientId", patientId);
 	        			pidBundle.putInt("UserId", userId);
-	        			Toast.makeText(NurseVitals.this, "userId: " + userId + "patiedId: " +patientId, Toast.LENGTH_SHORT).show();
 	        			shiftToDoctorInfo.putExtras(pidBundle);
 	        			shiftToDoctorInfo.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	        			startActivity(shiftToDoctorInfo);

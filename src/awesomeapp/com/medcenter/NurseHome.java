@@ -158,8 +158,10 @@ public class NurseHome extends Activity {
 			@Override
 			public void onClick(View v) {
 			Intent shiftToNewPatient = new Intent (v.getContext(), AddPatient.class);
+			Bundle dataBundle = new Bundle();
+			dataBundle.putInt("UserId", userId);
+			shiftToNewPatient.putExtras(dataBundle);
 			startActivity(shiftToNewPatient);
-			finish();
 			}
 			
 		});

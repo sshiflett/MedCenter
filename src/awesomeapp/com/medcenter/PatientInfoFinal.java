@@ -296,7 +296,6 @@ private class dViewPrescriptions extends AsyncTask<String, Void,String>{
 	        			Bundle pidBundle = new Bundle();
 	        			pidBundle.putInt("PatientId", patientId);
 	        			pidBundle.putInt("UserId", userId);
-	        			Toast.makeText(PatientInfoFinal.this, "userId: " + userId + "patiedId: " +patientId, Toast.LENGTH_SHORT).show();
 	        			shiftToDoctorHome.putExtras(pidBundle);
 	        			shiftToDoctorHome.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	        			startActivity(shiftToDoctorHome);

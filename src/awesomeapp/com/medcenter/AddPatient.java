@@ -31,7 +31,9 @@ import android.widget.Toast;
 
 
 public class AddPatient extends Activity {
+	int userId;
 	public String readJSONFeed(String URL) {
+		
 
 		StringBuilder stringBuilder = new StringBuilder();
 
@@ -121,6 +123,8 @@ public class AddPatient extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_add_patient);
+		Bundle unBundler = getIntent().getExtras();
+		userId = unBundler.getInt("UserId");
 		
 		final EditText patientFirstName = (EditText) findViewById(R.id.et_first_name);
 		final EditText patientLastName = (EditText) findViewById(R.id.et_last_name);
@@ -162,7 +166,12 @@ public class AddPatient extends Activity {
 		public void onClick(View b) {
 			//Intent shiftToNurseHome = new Intent (b.getContext(), NurseHome.class);
 			//startActivity(shiftToNurseHome);
-			finish();
+			Intent shiftToNurseHome = new Intent (b.getContext(), NurseHome.class);
+			Bundle pidBundle = new Bundle();
+			pidBundle.putInt("UserId", userId);
+			shiftToNurseHome.putExtras(pidBundle);
+			shiftToNurseHome.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(shiftToNurseHome);
 		}
 		
 			
